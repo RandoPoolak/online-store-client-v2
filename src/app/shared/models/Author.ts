@@ -5,6 +5,7 @@ export class Author{
   active: boolean;
 
   constructor(id: Number, firstName: String, lastName: String, active: boolean) {
+
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
