@@ -1,0 +1,8 @@
+Generate module
+ng generate module name --routing
+
+Generate component
+ng generate component name
+
+Generate service for component
+ng generate service admin/admin
