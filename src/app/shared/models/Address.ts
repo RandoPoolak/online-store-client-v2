@@ -4,16 +4,16 @@ export class Address{
   city: String;
   street: String;
   zipCode: String;
-  DefaultAddress: boolean;
+  defaultAddress: boolean;
   active: boolean;
 
-  constructor(id: Number, country: String, city: String, street: String, zipCode: String, DefaultAddress: boolean, active: boolean) {
+  constructor(id: Number, country: String, city: String, street: String, zipCode: String, defaultAddress: boolean, active: boolean) {
     this.id = id;
     this.country = country;
     this.city = city;
     this.street = street;
     this.zipCode = zipCode;
-    this.DefaultAddress = DefaultAddress;
+    this.defaultAddress = defaultAddress;
     this.active = active;
   }
 }
