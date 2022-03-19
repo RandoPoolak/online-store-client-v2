@@ -8,7 +8,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
 import {ShopModule} from "./shop/shop.module";
 import {AppInterceptor} from "./shared/interceptor/app.interceptor";
-
+import {MatMenuModule} from "@angular/material/menu";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {UserModule} from "./shop/user/user.module";
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import {AppInterceptor} from "./shared/interceptor/app.interceptor";
     HttpClientModule,
     NoopAnimationsModule,
     MatTableModule,
-    ShopModule
+    MatMenuModule,
+    MatToolbarModule,
+    UserModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
