@@ -19,13 +19,16 @@ export class AuthorsComponent implements OnInit {
   }
 
   deactivateAuthor(id: number):void{
-    this.authorService.deactivateAuthor(id).subscribe((data) =>{
+    this.authorService.deactivateAuthor(id).
+    subscribe((data) =>{
       this.ngOnInit();
     });
   }
 
   activateAuthor(id:number):void{
-    this.authorService.activateAuthor(id).subscribe((data) =>{console.log(data); this.ngOnInit()});
+    this.authorService.activateAuthor(id).
+    subscribe((data) =>{console.log(data);
+      this.ngOnInit()});
   }
 
 }
