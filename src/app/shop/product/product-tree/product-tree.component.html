@@ -1,0 +1,96 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+  <!-- Tree element with no child branches -->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+    <button mat-icon-button matTreeNodeToggle style="color: transparent; pointer-events: none">
+      <mat-icon class="mat-icon-rtl-mirror" style="color: transparent">
+        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+    </button>
+
+    {{node.name}} -> is active:
+    <span *ngIf="node.active; else elseColor" style="color:green">{{node.active}}</span>
+    <ng-template #elseColor><span style="color:red">{{node.active}}</span></ng-template>
+
+    <div class="button-div" *ngIf="node.controllerUrl == 'product'; else nextBlock">
+      <span *ngIf="node.active; else elseBlock">
+        <button mat-button color="primary" (click)="deactivateNode(node.controllerUrl, node.id)">Disable</button>
+      </span>
+      <ng-template #elseBlock>
+        <button mat-button color="primary" (click)="activateNode(node.controllerUrl, node.id)">Enable</button>
+      </ng-template>
+      <a routerLink="/{{node.controllerUrl}}/edit/{{node.id}}" routerLinkActive="active">
+        <button mat-button color="primary">Edit</button>
+      </a>
+    </div>
+    <ng-template #nextBlock class="button-div">
+      <a routerLink="/{{node.controllerUrl}}/new-sub/{{node.id}}" routerLinkActive="active">
+        <button mat-button color="primary">Add sub</button>
+      </a>
+      <span *ngIf="node.active; else elseBlock">
+        <button mat-button color="primary" (click)="deactivateNode(node.controllerUrl, node.id)">Disable</button>
+      </span>
+      <ng-template #elseBlock>
+        <button mat-button color="primary" (click)="activateNode(node.controllerUrl, node.id)">Enable</button>
+      </ng-template>
+      <a routerLink="/{{node.controllerUrl}}/edit/{{node.id}}" routerLinkActive="active">
+        <button mat-button color="primary">Edit</button>
+      </a>
+    </ng-template>
+  </mat-tree-node>
+
+  <!-- Tree element with child branches -->
+  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+    <div class="mat-tree-node">
+      <button mat-icon-button matTreeNodeToggle
+              [attr.aria-label]="'Toggle ' + node.name">
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+        </mat-icon>
+      </button>
+
+      {{node.name}} -> is active:
+      <span *ngIf="node.active; else elseColor" style="color:green">{{node.active}}</span>
+      <ng-template #elseColor><span style="color:red">{{node.active}}</span></ng-template>
+
+      <div class="button-div" *ngIf="node.controllerUrl == 'product'; else nextBlock">
+      <span *ngIf="node.active; else elseBlock">
+        <button mat-button color="primary" (click)="deactivateNode(node.controllerUrl, node.id)">Disable</button>
+      </span>
+        <ng-template #elseBlock>
+          <button mat-button color="primary" (click)="activateNode(node.controllerUrl, node.id)">Enable</button>
+        </ng-template>
+        <a routerLink="/{{node.controllerUrl}}/edit/{{node.id}}" routerLinkActive="active">
+          <button mat-button color="primary">Edit</button>
+        </a>
+      </div>
+      <ng-template #nextBlock class="button-div">
+        <a routerLink="/{{node.controllerUrl}}/new-sub/{{node.id}}" routerLinkActive="active">
+          <button mat-button color="primary">Add sub</button>
+        </a>
+        <span *ngIf="node.active; else elseBlock">
+          <button mat-button color="primary" (click)="deactivateNode(node.controllerUrl, node.id)">Disable</button>
+        </span>
+        <ng-template #elseBlock>
+          <button mat-button color="primary" (click)="activateNode(node.controllerUrl, node.id)">Enable</button>
+        </ng-template>
+        <a routerLink="/{{node.controllerUrl}}/edit/{{node.id}}" routerLinkActive="active">
+          <button mat-button color="primary">Edit</button>
+        </a>
+      </ng-template>
+    </div>
+
+    <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+         role="group">
+      <ng-container matTreeNodeOutlet></ng-container>
+    </div>
+  </mat-nested-tree-node>
+</mat-tree>
+
+<h3>Add new product type</h3>
+<form [formGroup]="productTypeForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Product type name:</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+  <button type="submit" [disabled]="!productTypeForm.valid" mat-raised-button color="primary">Submit</button>
+</form>

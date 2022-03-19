@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Author} from "../../shared/models/Author";
-import {AuthorService} from "../../shared/services/author.service";
+import {Author} from "../../../shared/models/Author";
+import {AuthorService} from "../../../shared/services/author.service";
 
 @Component({
   selector: 'app-authors',
@@ -14,21 +14,19 @@ export class AuthorsComponent implements OnInit {
 
   constructor(private authorService: AuthorService) { }
 
-  ngOnInit(): void {
-    this.authorService.getAllAuthors().subscribe(value => this.authors = <Author[]>value)
+  ngOnInit():void {
+    this.authorService.getAllAuthors().subscribe(
+      value => this.authors = <Author[]>value)
   }
 
   deactivateAuthor(id: number):void{
-    this.authorService.deactivateAuthor(id).
-    subscribe((data) =>{
+    this.authorService.deactivateAuthor(id)
+      .subscribe(() =>{
       this.ngOnInit();
     });
   }
 
   activateAuthor(id:number):void{
-    this.authorService.activateAuthor(id).
-    subscribe((data) =>{console.log(data);
-      this.ngOnInit()});
+    this.authorService.activateAuthor(id).subscribe(() =>{this.ngOnInit()});
   }
-
 }

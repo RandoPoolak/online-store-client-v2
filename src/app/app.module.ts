@@ -6,11 +6,14 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
-import {ShopModule} from "./shop/shop.module";
 import {AppInterceptor} from "./shared/interceptor/app.interceptor";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {UserModule} from "./shop/user/user.module";
+import {AuthorModule} from "./shop/author/author.module";
+import {ProductModule} from "./shop/product/product.module";
+import {ShopModule} from "./shop/shop.module";
+
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import {UserModule} from "./shop/user/user.module";
     MatTableModule,
     MatMenuModule,
     MatToolbarModule,
-    UserModule
+    UserModule,
+    AuthorModule,
+    ProductModule,
+    ShopModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

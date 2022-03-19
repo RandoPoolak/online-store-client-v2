@@ -1,0 +1,10 @@
+<form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+  <label for="first-name">First name: </label>
+  <input id="first-name" type="text" formControlName="firstName">
+  <br>
+  <label for="last-name">Last name: </label>
+  <input id="last-name" type="text" formControlName="lastName">
+  <br>
+  <button type="submit" [disabled]="!authorForm.valid" mat-raised-button color="primary">Submit</button>
+</form>
+

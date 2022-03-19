@@ -1,0 +1,51 @@
+<!--<form [formGroup]="productForm" (ngSubmit)="onSubmit()">-->
+<!--  <label for="description">Product description: </label>-->
+<!--  <input id="description" type="text" formControlName="description">-->
+<!--  <br>-->
+<!--  <label for="thumbnail-url">Thumbnail url: </label>-->
+<!--  <input id="thumbnail-url" type="text" formControlName="thumbnailUrl">-->
+<!--  <br>-->
+<!--  <label for="price">Price: </label>-->
+<!--  <input id="price" type="number" formControlName="price">-->
+<!--  <br>-->
+<!--  <label for="stock">Stock: </label>-->
+<!--  <input id="stock" type="number" formControlName="stock">-->
+<!--  <br>-->
+<!--  <label for="author">Author: </label>-->
+<!--  <input id="author" type="select" formControlName="author">-->
+<!--  <br>-->
+<!--  <button type="submit" [disabled]="!productForm.valid" mat-raised-button color="primary">Submit</button>-->
+<!--</form>-->
+<form [formGroup]="categoryNewSubForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Product description:</mat-label>
+    <input matInput formControlName="description">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Thumbnail url:</mat-label>
+    <input matInput formControlName="thumbnailUrl">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Price:</mat-label>
+    <input matInput type="number" formControlName="price">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Stock:</mat-label>
+    <input matInput type="number" formControlName="stock">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Author:</mat-label>
+    <mat-select formControlName="author">
+      <mat-option></mat-option>
+      <mat-option *ngFor="let author of authors" [value]="author">
+        {{author.firstName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button type="submit" [disabled]="!categoryNewSubForm.valid" mat-raised-button color="primary">Submit</button>
+</form>

@@ -1,0 +1,7 @@
+<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Category name:</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+  <button type="submit" [disabled]="!categoryForm.valid" mat-raised-button color="primary">Submit</button>
+</form>
