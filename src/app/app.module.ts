@@ -6,8 +6,10 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
-import {ShopModule} from "./shop/shop.module";
 import {AppInterceptor} from "./shared/interceptor/app.interceptor";
+import {AuthorModule} from "./shop/author/author.module";
+import {ProductModule} from "./shop/product/product.module";
+import {ShopModule} from "./shop/shop.module";
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import {AppInterceptor} from "./shared/interceptor/app.interceptor";
     HttpClientModule,
     NoopAnimationsModule,
     MatTableModule,
+    AuthorModule,
+    ProductModule,
     ShopModule
   ],
   providers: [{

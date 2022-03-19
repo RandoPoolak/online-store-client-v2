@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {ProductTreeComponent} from "./product-tree/product-tree.component";
+import {ProductTypeNewSubComponent} from "./product-type-new-sub/product-type-new-sub.component";
+import {CategoryNewSubComponent} from "./category-new-sub/category-new-sub.component";
+import {ProductTypeEditComponent} from "./product-type-edit/product-type-edit.component";
+import {CategoryEditComponent} from "./category-edit/category-edit.component";
+import {ProductEditComponent} from "./product-edit/product-edit.component";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
@@ -9,21 +15,17 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatTreeModule} from "@angular/material/tree";
 import {MatIconModule} from "@angular/material/icon";
 import {RouterModule} from "@angular/router";
-import {OrderHistoryComponent} from "./order-history/order-history.component";
-import {UserSettingsComponent} from "./user-settings/user-settings.component";
-import {UsersComponent} from "./users/users.component";
-import {CartComponent} from "./cart/cart.component";
-import {ProductsComponent} from "./products/products.component";
+
 
 
 @NgModule({
   declarations: [
-    OrderHistoryComponent,
-    UserSettingsComponent,
-    UsersComponent,
-    CartComponent,
-    ProductsComponent,
-
+    ProductTreeComponent,
+    ProductTypeNewSubComponent,
+    CategoryNewSubComponent,
+    ProductTypeEditComponent,
+    CategoryEditComponent,
+    ProductEditComponent,
   ],
   imports: [
     CommonModule,
@@ -38,4 +40,4 @@ import {ProductsComponent} from "./products/products.component";
     RouterModule
   ]
 })
-export class ShopModule { }
+export class ProductModule { }

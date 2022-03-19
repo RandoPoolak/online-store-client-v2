@@ -1,0 +1,12 @@
+<form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>First name:</mat-label>
+    <input matInput formControlName="firstName">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Last name:</mat-label>
+    <input matInput formControlName="lastName">
+  </mat-form-field>
+  <button type="submit" [disabled]="!authorForm.valid" mat-raised-button color="primary">Submit</button>
+</form>
+

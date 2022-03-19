@@ -1,0 +1,7 @@
+<form [formGroup]="productTypeForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Product type name:</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+  <button type="submit" [disabled]="!productTypeForm.valid" mat-raised-button color="primary">Submit</button>
+</form>
