@@ -13,29 +13,34 @@ import {RouterModule} from "@angular/router";
 import {OrderHistoryComponent} from "./order-history/order-history.component";
 import {CartComponent} from "./cart/cart.component";
 import {ProductsComponent} from "./products/products.component";
+import { WeatherWidgetComponent } from './weather-widget/weather-widget.component';
 
 
 
 
 @NgModule({
-  declarations: [
-    OrderHistoryComponent,
-    CartComponent,
-    ProductsComponent,
+    declarations: [
+        OrderHistoryComponent,
+        CartComponent,
+        ProductsComponent,
+        WeatherWidgetComponent,
 
 
-  ],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatTreeModule,
-    MatIconModule,
-    RouterModule
-  ]
+    ],
+    exports: [
+        WeatherWidgetComponent
+    ],
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatTreeModule,
+        MatIconModule,
+        RouterModule
+    ]
 })
 export class ShopModule { }
