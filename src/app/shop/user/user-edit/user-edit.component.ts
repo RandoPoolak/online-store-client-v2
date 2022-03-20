@@ -5,7 +5,6 @@ import {ContactMethod} from "../../../shared/models/ContactMethod";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../shared/services/user.service";
-import {Address} from "../../../shared/models/Address";
 
 @Component({
   selector: 'app-user-edit',
@@ -32,23 +31,12 @@ export class UserEditComponent implements OnInit {
     }],
   }
 
-  addresses: Address[] = [];
-
   userEditForm = this.formBuilder.group({
     login: new FormControl(),
     password: new FormControl(),
     logoUrl: new FormControl(),
     role: new FormControl(),
     contactMethod: new FormControl(),
-    addresses: new FormControl(),
-    }
-  )
-
-  addressForm = this.formBuilder.group({
-      country: new FormControl("", Validators.required),
-      city: new FormControl("", Validators.required),
-      street: new FormControl("", Validators.required),
-      zipCode: new FormControl("", Validators.required),
     }
   )
 
@@ -79,46 +67,28 @@ export class UserEditComponent implements OnInit {
   requestUser(id: number) {
     this.userService.getUserById(id).subscribe(value => {
       this.user = <User>value;
-      this.addresses = this.user.addresses;
       this.initForm();
     })
   }
 
   initForm(){
-    let defaultAddress = this.addresses.find(address => address.defaultAddress)
     this.userEditForm = this.formBuilder.group({
         login: [this.user.login, Validators.required],
         password: [this.user.password, Validators.required],
         logoUrl: [this.user.logoUrl, Validators.required],
         role: [this.user.role, Validators.required],
-        contactMethod: [this.user.contactMethod, Validators.required],
-        addresses: [Validators.required],
+        contactMethod: [this.user.contactMethod, Validators.required]
       }
     )
-    this.userEditForm.get("addresses")?.setValue(defaultAddress);
   }
 
   onSubmit():void {
     let updatedUser = this.userEditForm.value;
-    for (let address of this.addresses) {
-      address.defaultAddress = this.userEditForm.value.addresses.id == address.id;
-    }
-    updatedUser.addresses = this.addresses;
+    updatedUser.addresses = this.user.addresses;
     updatedUser.id = this.user.id;
     updatedUser.active = this.user.active;
     this.userService.updateUser(updatedUser).subscribe(()=>{
       this.router.navigate(['/user']).then(r => console.log("Redirected ->"+r))
-    });
-  }
-
-  onAddressSubmit():void {
-    let newAddress = this.addressForm.value;
-    newAddress.defaultAddress = false;
-    newAddress.active = true;
-    this.user.addresses.push(newAddress);
-    this.userService.updateUser(this.user).subscribe(()=> {
-      this.ngOnInit();
-      this.addressForm.reset();
     });
   }
 }

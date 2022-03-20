@@ -14,7 +14,7 @@
 <!--  <label for="author">Author: </label>-->
 <!--  <input id="author" type="select" formControlName="author">-->
 <!--  <br>-->
-<!--  <button type="submit" [disabled]="!productForm.valid" mat-raised-button color="primary">Submit</button>-->
+<!--  <button type="submit" [disabled]="!productForm.valid" mat-button color="primary">Submit</button>-->
 <!--</form>-->
 <form [formGroup]="categoryNewSubForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="fill">
@@ -47,5 +47,5 @@
     </mat-select>
   </mat-form-field>
 
-  <button type="submit" [disabled]="!categoryNewSubForm.valid" mat-raised-button color="primary">Submit</button>
+  <button type="submit" [disabled]="!categoryNewSubForm.valid" mat-button color="primary">Submit</button>
 </form>

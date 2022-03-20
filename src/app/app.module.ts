@@ -13,6 +13,7 @@ import {UserModule} from "./shop/user/user.module";
 import {AuthorModule} from "./shop/author/author.module";
 import {ProductModule} from "./shop/product/product.module";
 import {ShopModule} from "./shop/shop.module";
+import {AddressModule} from "./shop/address/address.module";
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {ShopModule} from "./shop/shop.module";
     AuthorModule,
     ProductModule,
     ShopModule,
+    AddressModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

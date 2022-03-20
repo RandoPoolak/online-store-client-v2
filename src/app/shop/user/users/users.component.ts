@@ -12,9 +12,7 @@ export class UsersComponent implements OnInit {
   users: User[] = [];
   displayColumns: string[] = ['id','login','password',
     'logoUrl','role','contactMethod','isActive',
-    'addressId','addressCountry','addressCity',
-    'addressStreet','addressZipCode','addressDefaultAddress','addressActive','edit','deactivate'];
-
+    'address','edit','deactivate'];
 
   constructor(private userService: UserService) { }
 

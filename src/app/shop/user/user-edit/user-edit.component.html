@@ -1,4 +1,3 @@
-<p>user-edit works!</p>
 <form [formGroup]="userEditForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="fill">
     <mat-label>Login:</mat-label>
@@ -35,40 +34,5 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Address:</mat-label>
-    <mat-select formControlName="addresses">
-      <mat-option>Select address</mat-option>
-      <mat-option *ngFor="let address of addresses" [value]="address">
-        {{address.country}} {{address.city}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <button type="submit" [disabled]="!userEditForm.valid" mat-raised-button color="primary">Submit</button>
-</form>
-
-<h3>Add new address</h3>
-<form [formGroup]="addressForm" (ngSubmit)="onAddressSubmit()">
-  <mat-form-field appearance="fill">
-    <mat-label>Country:</mat-label>
-    <input matInput formControlName="country">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>City:</mat-label>
-    <input matInput formControlName="city">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Street:</mat-label>
-    <input matInput formControlName="street">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Zip code:</mat-label>
-    <input matInput formControlName="zipCode">
-  </mat-form-field>
-
-  <button type="submit" [disabled]="!addressForm.valid" mat-raised-button color="primary">Submit</button>
+  <button type="submit" [disabled]="!userEditForm.valid" mat-button color="primary">Submit</button>
 </form>

@@ -12,6 +12,8 @@ import {ProductTypeEditComponent} from "./shop/product/product-type-edit/product
 import {ProductTypeNewSubComponent} from "./shop/product/product-type-new-sub/product-type-new-sub.component";
 import {CategoryEditComponent} from "./shop/product/category-edit/category-edit.component";
 import {CategoryNewSubComponent} from "./shop/product/category-new-sub/category-new-sub.component";
+import {AddressEditComponent} from "./shop/address/address-edit/address-edit.component";
+import {AddressesComponent} from "./shop/address/addresses/addresses.component";
 
 
 const routes: Routes = [
@@ -27,6 +29,8 @@ const routes: Routes = [
   {path: 'product-type/new-sub/:id', component: ProductTypeNewSubComponent},
   {path: 'category/edit/:id', component: CategoryEditComponent},
   {path: 'category/new-sub/:id', component: CategoryNewSubComponent},
+  {path: 'address-edit/:addressId/:userId', component: AddressEditComponent},
+  {path: 'address/:id', component: AddressesComponent},
 ];
 
 @NgModule({
