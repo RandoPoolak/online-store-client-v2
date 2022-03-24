@@ -59,7 +59,7 @@ export class UserEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe(params => {
-      this.requestId = +params["id"];
+      this.requestId = +params["userId"];
       this.requestUser(this.requestId);
     })
   }
@@ -88,7 +88,7 @@ export class UserEditComponent implements OnInit {
     updatedUser.id = this.user.id;
     updatedUser.active = this.user.active;
     this.userService.updateUser(updatedUser).subscribe(()=>{
-      this.router.navigate(['/user']).then(r => console.log("Redirected ->"+r))
+      this.router.navigate(['/user-settings/' + this.requestId as String + '/1']).then(r => console.log("Redirected ->"+r))
     });
   }
 }

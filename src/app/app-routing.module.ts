@@ -15,6 +15,7 @@ import {CategoryNewSubComponent} from "./shop/product/category-new-sub/category-
 import {AddressEditComponent} from "./shop/address/address-edit/address-edit.component";
 import {AddressesComponent} from "./shop/address/addresses/addresses.component";
 import {WeatherWidgetComponent} from "./shop/weather-widget/weather-widget.component";
+import {UserSettingsComponent} from "./shop/user/user-settings/user-settings.component";
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'address-edit/:addressId/:userId', component: AddressEditComponent},
   {path: 'address/:id', component: AddressesComponent},
   {path: 'weather', component: WeatherWidgetComponent},
+  {path: 'user-settings/:userId/:tabIndex', component: UserSettingsComponent},
 ];
 
 @NgModule({

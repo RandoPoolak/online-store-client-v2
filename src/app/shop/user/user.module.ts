@@ -10,6 +10,14 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
+import {MatListModule} from "@angular/material/list";
+import { UserAddressEditComponent } from './user-address-edit/user-address-edit.component';
+import { UserAddressesComponent } from './user-addresses/user-addresses.component';
+import { UserPasswordEditComponent } from './user-password-edit/user-password-edit.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { UserInfoComponent } from './user-info/user-info.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 
@@ -18,16 +26,24 @@ import {MatSelectModule} from "@angular/material/select";
     UserSettingsComponent,
     UsersComponent,
     UserEditComponent,
+    UserAddressEditComponent,
+    UserAddressesComponent,
+    UserPasswordEditComponent,
+    UserInfoComponent,
   ],
-  imports: [
-    CommonModule,
-    MatTableModule,
-    MatButtonModule,
-    RouterModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-  ]
+    imports: [
+        CommonModule,
+        MatTableModule,
+        MatButtonModule,
+        RouterModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatListModule,
+        MatTabsModule,
+        MatCardModule,
+        MatPaginatorModule,
+    ]
 })
 export class UserModule { }
