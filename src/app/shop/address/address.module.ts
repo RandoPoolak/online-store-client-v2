@@ -8,20 +8,22 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatTableModule} from "@angular/material/table";
 import {RouterModule} from "@angular/router";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
     AddressEditComponent,
     AddressesComponent
   ],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatInputModule,
-    MatTableModule,
-    RouterModule
-  ]
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatInputModule,
+        MatTableModule,
+        RouterModule,
+        MatPaginatorModule
+    ]
 })
 export class AddressModule { }

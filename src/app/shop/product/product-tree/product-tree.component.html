@@ -1,4 +1,4 @@
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree" style="float:left;">
   <!-- Tree element with no child branches -->
   <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
     <button mat-icon-button matTreeNodeToggle style="color: transparent; pointer-events: none">
@@ -86,11 +86,13 @@
   </mat-nested-tree-node>
 </mat-tree>
 
-<h3>Add new product type</h3>
-<form [formGroup]="productTypeForm" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="fill">
-    <mat-label>Product type name:</mat-label>
-    <input matInput formControlName="name">
-  </mat-form-field>
-  <button type="submit" [disabled]="!productTypeForm.valid" mat-button color="primary">Submit</button>
-</form>
+<div style="float:right">
+  <h3>Add new product type</h3>
+  <form [formGroup]="productTypeForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Product type name:</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <button type="submit" [disabled]="!productTypeForm.valid" mat-button color="primary">Submit</button>
+  </form>
+</div>

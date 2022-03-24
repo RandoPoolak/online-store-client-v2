@@ -51,4 +51,8 @@ export class ProductService {
     return this.httpClient.post(this.PRODUCT_BASE_URL+"/update", newProduct);
   }
 
+  public getAllProducts(){
+    return this.httpClient.get(this.PRODUCT_BASE_URL);
+  }
+
 }

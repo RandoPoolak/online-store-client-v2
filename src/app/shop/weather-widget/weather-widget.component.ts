@@ -11,14 +11,15 @@ export class WeatherWidgetComponent implements OnInit {
   weatherData:any;
   constructor(
     private weatherWidgetService: WeatherServiceService,
-    ) { }
+    ) {
+  }
 
   ngOnInit(): void {
     this.weatherData = {
       main : {},
       isDay: true,
     };
-    this.weatherWidgetService.getWeatherData('riga').subscribe(data =>{
+    this.weatherWidgetService.getWeatherData('tallinn').subscribe(data =>{
       let dataTest = JSON.stringify(data);
       this.setWeatherData(JSON.parse(dataTest));
     })

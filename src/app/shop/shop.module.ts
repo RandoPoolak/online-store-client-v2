@@ -14,6 +14,11 @@ import {OrderHistoryComponent} from "./order-history/order-history.component";
 import {CartComponent} from "./cart/cart.component";
 import {ProductsComponent} from "./products/products.component";
 import { WeatherWidgetComponent } from './weather-widget/weather-widget.component';
+import { AdminComponent } from './admin/admin.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import {AuthorModule} from "./author/author.module";
+import {UserModule} from "./user/user.module";
+import {ProductModule} from "./product/product.module";
 
 
 
@@ -24,23 +29,28 @@ import { WeatherWidgetComponent } from './weather-widget/weather-widget.componen
         CartComponent,
         ProductsComponent,
         WeatherWidgetComponent,
+        AdminComponent,
 
 
     ],
     exports: [
         WeatherWidgetComponent
     ],
-    imports: [
-        CommonModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatOptionModule,
-        MatSelectModule,
-        MatButtonModule,
-        MatTreeModule,
-        MatIconModule,
-        RouterModule
-    ]
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatTreeModule,
+    MatIconModule,
+    RouterModule,
+    MatTabsModule,
+    AuthorModule,
+    UserModule,
+    ProductModule
+  ]
 })
 export class ShopModule { }

@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Address} from "../../../shared/models/Address";
 import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../../shared/services/user.service";
 import {AddressService} from "../../../shared/services/address.service";
 import {User} from "../../../shared/models/User";
-import {Role} from "../../../shared/models/Role";
-import {ContactMethod} from "../../../shared/models/ContactMethod";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-addresses',
@@ -14,25 +14,13 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
   styleUrls: ['./addresses.component.css']
 })
 export class AddressesComponent implements OnInit {
-
-  user: User = {
-    active: false,
-    id: 0,
-    login: "",
-    logoUrl: "",
-    password: "",
-    role: Role.USER,
-    contactMethod: ContactMethod.EMAIL,
-    addresses: [{
-      id: 0,
-      country: "",
-      city: "",
-      street: "",
-      zipCode: "",
-      defaultAddress: true,
-      active: false
-    }],
-  }
+  @ViewChild('paginator') paginator: MatPaginator;
+  user: any;
+  pageSizes = [10,25,50];
+  requestId: number = 0;
+  dataSource = new MatTableDataSource<Address>([]);
+  displayColumns: string[] = ['id', 'country', 'city',
+    'street', 'zipCode', 'isActive', 'edit', 'deactivate','makeDefault'];
 
   newAddressForm = this.formBuilder.group({
       country: new FormControl("", Validators.required),
@@ -41,11 +29,6 @@ export class AddressesComponent implements OnInit {
       zipCode: new FormControl("", Validators.required),
     }
   )
-
-  requestId: number = 0;
-  userAddresses: Address[] = [];
-  displayColumns: string[] = ['id', 'country', 'city',
-    'street', 'zipCode', 'isActive', 'edit', 'deactivate','makeDefault']
 
   constructor(
     private addressService: AddressService,
@@ -65,7 +48,8 @@ export class AddressesComponent implements OnInit {
   requestUser(id: number) {
     this.userService.getUserById(id).subscribe(value => {
       this.user = <User>value;
-      this.userAddresses = this.user.addresses;
+      this.dataSource.data = this.user.addresses;
+      this.dataSource.paginator = this.paginator;
     })
   }
 
@@ -82,10 +66,10 @@ export class AddressesComponent implements OnInit {
   }
 
   setDefault(id: number): void{
-    for (let address of this.userAddresses) {
+    for (let address of this.dataSource.data) {
       address.defaultAddress = address.id == id;
     }
-    this.user.addresses = this.userAddresses;
+    this.user.addresses = this.dataSource.data;
     this.userService.updateUser(this.user).subscribe(() => {
       this.ngOnInit();
     })

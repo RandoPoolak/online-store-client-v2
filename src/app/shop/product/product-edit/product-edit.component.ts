@@ -13,20 +13,7 @@ import {AuthorService} from "../../../shared/services/author.service";
   styleUrls: ['./product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
-  product: Product = {
-    active: false,
-    description: "",
-    id: 0,
-    price: 0,
-    stock: 0,
-    thumbnailUrl: "",
-    author: {
-      active: false,
-      firstName: "",
-      id: 0,
-      lastName: ""
-    }
-  }
+  product: any;
 
   authors: Author[] = []
 
@@ -80,7 +67,7 @@ export class ProductEditComponent implements OnInit {
     editProduct.id = this.product.id;
     editProduct.active = this.product.active;
     this.productService.updateProduct(editProduct).subscribe(()=>{
-      this.router.navigate(['/product-tree']).then(r => console.log("Redirected ->"+r))
+      this.router.navigate(['/admin/2']).then(r => console.log("Redirected ->"+r))
     });
   }
 }

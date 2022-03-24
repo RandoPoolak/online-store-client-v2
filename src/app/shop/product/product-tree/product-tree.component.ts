@@ -3,7 +3,6 @@ import {MatTreeNestedDataSource} from "@angular/material/tree";
 import {NestedTreeControl} from "@angular/cdk/tree";
 import {TreeNode} from "../../../shared/models/TreeNode";
 import {TreeNodeService} from "../../../shared/services/tree-node.service";
-import {ProductType} from "../../../shared/models/ProductType";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ProductService} from "../../../shared/services/product.service";
 
@@ -14,12 +13,7 @@ import {ProductService} from "../../../shared/services/product.service";
   styleUrls: ['./product-tree.component.css']
 })
 export class ProductTreeComponent implements OnInit {
-  productType: ProductType = {
-    active: true,
-    categories: [],
-    id: 0,
-    name: ""
-  }
+  productType: any;
   productTypeForm = this.formBuilder.group({
     name: new FormControl('', [Validators.required])
   })

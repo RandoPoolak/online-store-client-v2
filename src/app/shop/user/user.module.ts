@@ -10,24 +10,31 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 
 @NgModule({
-  declarations: [
-    UserSettingsComponent,
-    UsersComponent,
-    UserEditComponent,
-  ],
-  imports: [
-    CommonModule,
-    MatTableModule,
-    MatButtonModule,
-    RouterModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-  ]
+    declarations: [
+        UserSettingsComponent,
+        UsersComponent,
+        UserEditComponent,
+    ],
+    exports: [
+        UsersComponent
+    ],
+    imports: [
+        CommonModule,
+        MatTableModule,
+        MatButtonModule,
+        RouterModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        MatPaginatorModule
+    ]
 })
 export class UserModule { }

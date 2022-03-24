@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from "../../../shared/models/Product";
 import {Author} from "../../../shared/models/Author";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Category} from "../../../shared/models/Category";
@@ -13,24 +12,9 @@ import {AuthorService} from "../../../shared/services/author.service";
   styleUrls: ['./category-new-sub.component.css']
 })
 export class CategoryNewSubComponent implements OnInit {
-  newProduct: Product = {
-    active: true,
-    description: "",
-    id: 0,
-    price: 0,
-    stock: 0,
-    thumbnailUrl: "",
-    author: {
-      active: false,
-      firstName: "",
-      id: 0,
-      lastName: ""
-    },
-  }
 
-  category: Category = {
-    active: false, id: 0, name: "", products: []
-  }
+  newProduct:any;
+  category: any;
 
   authors: Author[] = [];
 
@@ -73,7 +57,7 @@ export class CategoryNewSubComponent implements OnInit {
     this.newProduct.active = true;
     this.category.products.push(this.newProduct);
     this.productService.updateCategory(this.category).subscribe(()=>{
-      this.router.navigate(['/product-tree']).then(r => console.log("Redirected ->"+r))
+      this.router.navigate(['/admin/2']).then(r => console.log("Redirected ->"+r))
     });
   }
 

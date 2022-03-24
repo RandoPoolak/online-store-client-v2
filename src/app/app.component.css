@@ -5,3 +5,9 @@
 a {
   padding-right: 1rem;
 }
+
+.weather-container{
+  height: 64px;
+  width: 200px;
+  float: right;
+}
