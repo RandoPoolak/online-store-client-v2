@@ -5,23 +5,8 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Password:</mat-label>
-    <input matInput formControlName="password">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
     <mat-label>Logo url:</mat-label>
     <input matInput formControlName="logoUrl">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Role:</mat-label>
-    <mat-select formControlName="role">
-      <mat-option>Select role</mat-option>
-      <mat-option *ngFor="let role of enumRoles" [value]="role">
-        {{role}}
-      </mat-option>
-    </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">

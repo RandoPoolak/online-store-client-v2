@@ -6,7 +6,6 @@ import {AddressService} from "../../../shared/services/address.service";
 import {User} from "../../../shared/models/User";
 import {Role} from "../../../shared/models/Role";
 import {ContactMethod} from "../../../shared/models/ContactMethod";
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-addresses',
@@ -34,14 +33,6 @@ export class AddressesComponent implements OnInit {
     }],
   }
 
-  newAddressForm = this.formBuilder.group({
-      country: new FormControl("", Validators.required),
-      city: new FormControl("", Validators.required),
-      street: new FormControl("", Validators.required),
-      zipCode: new FormControl("", Validators.required),
-    }
-  )
-
   requestId: number = 0;
   userAddresses: Address[] = [];
   displayColumns: string[] = ['id', 'country', 'city',
@@ -51,7 +42,6 @@ export class AddressesComponent implements OnInit {
     private addressService: AddressService,
     private userService: UserService,
     private activeRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
   ) {
   }
 
@@ -89,16 +79,5 @@ export class AddressesComponent implements OnInit {
     this.userService.updateUser(this.user).subscribe(() => {
       this.ngOnInit();
     })
-  }
-
-  onAddressSubmit(): void {
-    let newAddress = this.newAddressForm.value;
-    newAddress.defaultAddress = false;
-    newAddress.active = true;
-    this.user.addresses.push(newAddress);
-    this.userService.updateUser(this.user).subscribe(() => {
-      this.ngOnInit();
-      this.newAddressForm.reset();
-    });
   }
 }

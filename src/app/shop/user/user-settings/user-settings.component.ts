@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../../../shared/models/User";
-import {Role} from "../../../shared/models/Role";
-import {ContactMethod} from "../../../shared/models/ContactMethod";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-user-settings',
@@ -10,9 +8,14 @@ import {ContactMethod} from "../../../shared/models/ContactMethod";
 })
 export class UserSettingsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) { }
+  tabIndex: number = 0;
+  userId: number = 0;
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params =>{
+      this.userId = +params['userId'];
+      this.tabIndex = +params['tabIndex'];
+    })
   }
-
 }
