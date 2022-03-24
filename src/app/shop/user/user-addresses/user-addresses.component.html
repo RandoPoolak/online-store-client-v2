@@ -1,8 +1,4 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef style="width: 100px"> Id</th>
-    <td mat-cell *matCellDef="let address"> {{address.id}} </td>
-  </ng-container>
 
   <ng-container matColumnDef="country">
     <th mat-header-cell *matHeaderCellDef style="width: 100px"> Country</th>
@@ -46,9 +42,6 @@
           Deactivate
         </button>
         <ng-template #elseButton>
-          <button (click)="activateAddress(address.id)" mat-button color="primary">
-            Activate
-          </button>
         </ng-template>
       </div>
     </td>
@@ -73,7 +66,33 @@
   <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
 </table>
-<mat-paginator class="width" #paginator [pageSizeOptions]="pageSizes"
+
+<h3>Add new address</h3>
+<form [formGroup]="newAddressForm" (ngSubmit)="onAddressSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Country:</mat-label>
+    <input matInput formControlName="country">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>City:</mat-label>
+    <input matInput formControlName="city">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Street:</mat-label>
+    <input matInput formControlName="street">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Zip code:</mat-label>
+    <input matInput formControlName="zipCode">
+  </mat-form-field>
+
+  <button type="submit" [disabled]="!newAddressForm.valid" mat-button color="primary">Submit</button>
+</form>
+
+<mat-paginator #paginator [pageSizeOptions]="pageSizes"
                showFirstLastButtons></mat-paginator>
 
 

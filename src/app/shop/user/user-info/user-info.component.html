@@ -1,0 +1,12 @@
+<mat-card class="example-card">
+  <mat-card-title-group>
+    <mat-card-title>{{this.user.login}}</mat-card-title>
+    <mat-card-subtitle>
+      Email: {{this.user.contactMethod}}<br>
+      Primary address: {{this.primaryAddress.country}},{{primaryAddress.city}},{{this.primaryAddress.street}}, {{primaryAddress.zipCode}}
+    </mat-card-subtitle>
+    <img mat-card-xl-image src="{{this.user.logoUrl}}" alt="User Logo">
+  </mat-card-title-group>
+  <mat-card-content>
+  </mat-card-content>
+</mat-card>
