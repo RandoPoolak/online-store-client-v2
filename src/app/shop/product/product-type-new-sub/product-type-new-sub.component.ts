@@ -11,9 +11,7 @@ import {ProductService} from "../../../shared/services/product.service";
   styleUrls: ['./product-type-new-sub.component.css']
 })
 export class ProductTypeNewSubComponent implements OnInit {
-  productType: ProductType ={
-    active: false, categories: [], id: 0, name: ""
-  }
+  productType: any;
   newCategory: Category={
     active: true, id: 0, name: "", products: []
   }
@@ -48,7 +46,7 @@ export class ProductTypeNewSubComponent implements OnInit {
     this.newCategory.name = this.productTypeNewSubForm.value.name;
     this.productType.categories.push(this.newCategory);
     this.productService.updateProductType(this.productType).subscribe(() =>{
-      this.router.navigate(['/product-tree']).then(r=> console.log("Redirected ->"+r))
+      this.router.navigate(['/admin/2']).then(r=> console.log("Redirected ->"+r))
     });
   }
 

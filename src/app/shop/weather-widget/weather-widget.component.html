@@ -1,18 +1,48 @@
-<div id="divWeatherMain">
-  <div *ngIf="weatherData.isDay; else elseBlock" class="weatherWidgetRow">
-    <i class="fas fa-3x fa-sun sun"></i>
+<div class="dropdown">
+  <div class="mini-widget">
+    <div *ngIf="weatherData.isDay; else elseBlock" class="weatherWidgetRow">
+      <div>
+        <i class="fas fa-3x fa-sun sun"></i>
+      </div>
+      <div class="weatherWidgetRow cloud-div">
+        <i class="fas fa-cloud fa-3x cloud"></i>
+      </div>
+    </div>
+    <ng-template #elseBlock>
+      <div class="weatherWidgetRow">
+        <div>
+        <i class="fas fa-3x fa-moon moon"></i>
+        </div>
+        <div class="weatherWidgetRow cloud-div">
+          <i class="fas fa-cloud fa-3x cloud"></i>
+        </div>
+      </div>
+    </ng-template>
+    <div class="weatherWidgetRow" style="font-size: 32px;margin-top:5px">{{weatherData.temp_celcius}}°</div>
+    <div class="float-right">
+      <div style="font-size: 12px">Humidity: {{weatherData.main.humidity}}%</div>
+      <div class="float-right" style="font-size: 12px; ">{{weatherData.name}}</div>
+    </div>
   </div>
-  <ng-template #elseBlock>
-  <div class="weatherWidgetRow">
-    <i class="fas fa-3x fa-moon moon"></i>
+
+  <div class="dropdown-content">
+    <div id="divWeatherMain">
+      <div *ngIf="weatherData.isDay; else elseBlock2" class="weatherWidgetRow">
+        <i class="fas fa-3x fa-sun sun"></i>
+      </div>
+      <ng-template #elseBlock2>
+        <div class="weatherWidgetRow">
+          <i class="fas fa-3x fa-moon moon"></i>
+        </div>
+      </ng-template>
+      <div class="weatherWidgetRow cloud-div">
+        <i class="fas fa-cloud fa-3x cloud"></i>
+      </div>
+      <div class="weatherWidgetRow" style="font-size: 32px;margin-top:5px">{{weatherData.temp_celcius}}°</div>
+      <div class="weatherWidgetRow" style="font-size: 12px">{{weatherData.temp_min}}° / {{weatherData.temp_max}}°</div>
+      <div class="weatherWidgetRow" style="font-size: 12px">Feels like: {{weatherData.temp_feels_like}}°</div>
+      <div class="weatherWidgetRow" style="font-size: 25px;margin-top:10px">{{weatherData.name}}</div>
+      <div class="weatherWidgetRow" style="font-size: 12px">Humidity: {{weatherData.main.humidity}}%</div>
+    </div>
   </div>
-  </ng-template>
-  <div class="weatherWidgetRow cloud-div">
-    <i class="fas fa-cloud fa-3x cloud"></i>
-  </div>
-  <div class="weatherWidgetRow" style="font-size: 32px;margin-top:5px">{{weatherData.temp_celcius}}°</div>
-  <div class="weatherWidgetRow" style="font-size: 12px">{{weatherData.temp_min}}° / {{weatherData.temp_max}}°</div>
-  <div class="weatherWidgetRow" style="font-size: 12px">Feels like: {{weatherData.temp_feels_like}}°</div>
-  <div class="weatherWidgetRow" style="font-size: 25px;margin-top:10px">{{weatherData.name}}</div>
-  <div class="weatherWidgetRow" style="font-size: 12px">Humidity: {{weatherData.main.humidity}}%</div>
 </div>

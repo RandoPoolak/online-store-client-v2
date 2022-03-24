@@ -49,7 +49,7 @@ export class AuthorEditComponent implements OnInit {
     this.author.firstName = this.authorForm.value.firstName;
     this.author.lastName = this.authorForm.value.lastName;
     this.authorService.updateAuthor(this.author).subscribe(() => {
-      this.router.navigate(['/author']).then(r => console.log("Redirect ->" +r));
+      this.router.navigate(['/admin/1']).then(r => console.log("Redirect ->" +r));
     });
 
   }

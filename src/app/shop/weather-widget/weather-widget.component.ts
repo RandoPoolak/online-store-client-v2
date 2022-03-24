@@ -11,7 +11,8 @@ export class WeatherWidgetComponent implements OnInit {
   weatherData:any;
   constructor(
     private weatherWidgetService: WeatherServiceService,
-    ) { }
+    ) {
+  }
 
   ngOnInit(): void {
     this.weatherData = {

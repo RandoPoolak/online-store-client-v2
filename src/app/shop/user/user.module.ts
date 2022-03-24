@@ -10,6 +10,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatListModule} from "@angular/material/list";
 import { UserAddressEditComponent } from './user-address-edit/user-address-edit.component';
 import { UserAddressesComponent } from './user-addresses/user-addresses.component';
@@ -31,6 +32,10 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     UserPasswordEditComponent,
     UserInfoComponent,
   ],
+  exports: [
+        UsersComponent
+    ],
+
     imports: [
         CommonModule,
         MatTableModule,
@@ -40,10 +45,11 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         MatFormFieldModule,
         MatInputModule,
         MatSelectModule,
+        MatSnackBarModule,
+        MatPaginatorModule
         MatListModule,
         MatTabsModule,
         MatCardModule,
-        MatPaginatorModule,
     ]
 })
 export class UserModule { }

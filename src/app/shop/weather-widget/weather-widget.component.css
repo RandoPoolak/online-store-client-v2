@@ -2,41 +2,41 @@
   display: block;
   border-radius: 10px;
   width: 200px;
-  height: 220px;
+  height: 270px;
   background: rgb(0, 0, 0);
   background: linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(8, 7, 42, 1));
   color: white;
   font-family: 'Sagoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.weatherWidgetRow {
+#divWeatherMain .weatherWidgetRow {
   display: block;
   margin: 0 auto;
   width: fit-content;
 }
 
-.sun {
+#divWeatherMain .sun {
   margin-top: 10px;
   color: yellow;
   filter: drop-shadow(1px 1px 10px yellow);
 }
 
-.moon {
+#divWeatherMain .moon {
   margin-top: 10px;
   color: white;
   filter: drop-shadow(1px 1px 10px white);
 }
 
-.cloud-div {
+#divWeatherMain .cloud-div {
   margin-top: -40px;
 }
 
-.cloud {
+#divWeatherMain .cloud {
   color: rgb(104, 176, 197);
   filter:drop-shadow(1px 1px 5px rgb(104,175,197));
   animation-name: cloudMovement;
   animation-iteration-count: infinite;
-  animation-duration: 10s;
+  animation-duration: 7s;
   animation-timing-function: ease-in-out;
   animation-direction: alternate;
 }
@@ -44,4 +44,96 @@
 @keyframes cloudMovement {
   from{margin-left: -55px;}
   to{margin-left: 65px;}
+}
+
+.dropdown{
+  z-index: 10;
+  position: relative;
+  display: inline-block;
+  height: 64px;
+  width: 200px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(8, 7, 42, 1));
+  color: white;
+}
+
+.dropdown-content{
+  display:none;
+  position: absolute;
+  width: 200px;
+  height: 270px;
+  box-shadow: 0 10px 20px 0 rgba(0,0,0,0.4);
+
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .mini-widget {
+  display: none;
+}
+
+.mini-widget{
+  margin-left: 5px;
+}
+
+.mini-widget .weatherWidgetRow{
+  float:left;
+}
+
+.mini-widget .float-right{
+  float: right;
+  margin-right: 10px;
+}
+
+.mini-widget .weatherWidgetRow .sun {
+  margin:10px 10px 0 10px;
+  color: yellow;
+  filter: drop-shadow(1px 1px 10px yellow);
+  font-size: 22px;
+}
+
+.mini-widget .weatherWidgetRow .moon {
+  margin:10px 10px 0 10px;
+  color: white;
+  filter: drop-shadow(1px 1px 10px white);
+  font-size: 22px;
+}
+
+.mini-widget .weatherWidgetRow .cloud-div {
+  margin-top: -25px;
+}
+
+.mini-widget .weatherWidgetRow .cloud {
+  color: rgb(104, 176, 197);
+  filter:drop-shadow(1px 1px 5px rgb(104,175,197));
+  animation-name: cloudMovementMini;
+  animation-iteration-count: infinite;
+  animation-duration: 7s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  font-size: 22px;
+}
+
+@keyframes cloudMovementMini {
+  from{margin-left: 0;}
+  to{margin-left: 15px;}
+}
+
+.dropdown-content{
+  animation: growDown 300ms ease-in-out forwards;
+  transform-origin: top center;
+}
+
+@keyframes growDown {
+  0% {
+    transform: scaleY(0)
+  }
+  80% {
+    transform: scaleY(1.1)
+  }
+  100% {
+    transform: scaleY(1)
+  }
 }

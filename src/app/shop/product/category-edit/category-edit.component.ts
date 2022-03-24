@@ -10,9 +10,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./category-edit.component.css']
 })
 export class CategoryEditComponent implements OnInit {
-  category: Category = {
-    active: false, id: 0, name: "", products: []
-  }
+  category: any;
 
   categoryForm = this.formBuilder.group({
     name: new FormControl()
@@ -50,7 +48,7 @@ export class CategoryEditComponent implements OnInit {
   onSubmit(): void{
     this.category.name = this.categoryForm.value.name;
     this.productService.updateCategory(this.category).subscribe(()=>{
-      this.router.navigate(['/product-tree']).then(r=> console.log("Redirect ->" +r))
+      this.router.navigate(['/admin/2']).then(r=> console.log("Redirect ->" +r))
     })
   }
 }
