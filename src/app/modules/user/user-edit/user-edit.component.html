@@ -1,0 +1,23 @@
+<form [formGroup]="userEditForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Login:</mat-label>
+    <input matInput formControlName="login">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Logo url:</mat-label>
+    <input matInput formControlName="logoUrl">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Contact method:</mat-label>
+    <mat-select formControlName="contactMethod">
+      <mat-option>Contact method</mat-option>
+      <mat-option *ngFor="let contactMethod of enumContactMethods" [value]="contactMethod">
+        {{contactMethod}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button type="submit" [disabled]="!userEditForm.valid" mat-button color="primary">Submit</button>
+</form>

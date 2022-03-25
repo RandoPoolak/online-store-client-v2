@@ -1,0 +1,90 @@
+<div class="product-tree">
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+      <button mat-icon-button matTreeNodeToggle style="color: transparent; pointer-events: none">
+        <mat-icon class="mat-icon-rtl-mirror" style="color: transparent">
+          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+        </mat-icon>
+      </button>
+      <div class="node">
+        {{node.name}}
+      </div>
+    </mat-tree-node>
+
+    <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+      <div class="mat-tree-node">
+        <button mat-icon-button matTreeNodeToggle
+                [attr.aria-label]="'Toggle ' + node.name">
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button>
+        <div class="node">
+          {{node.name}}
+        </div>
+      </div>
+      <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+           role="group">
+        <ng-container matTreeNodeOutlet></ng-container>
+      </div>
+    </mat-nested-tree-node>
+  </mat-tree>
+</div>
+
+<div class="shop-box">
+  <div class="util-container">
+    <div class="search-box">
+      <input matInput type="text" placeholder="Search here">
+    </div>
+    <div class="selector">
+      <mat-button-toggle-group #group="matButtonToggleGroup" value="grid">
+        <mat-button-toggle value="grid" aria-label="Text align left">
+          <mat-icon>view_module</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="row" aria-label="Text align center">
+          <mat-icon>view_headline</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+
+  <div class="product-box-grid" *ngIf="group.value == 'grid';else elseBlock">
+    <div *ngFor="let productType of shopData">
+      <div *ngFor="let category of productType.categories">
+        <div class="product-grid" *ngFor="let product of category.products">
+          <div class="grid-img"><img src="{{product.thumbnailUrl}}" alt="Thumbnail"></div>
+          <div class="grid-desc">{{product.description}}</div>
+          <div class="grid-author"><span>{{product.author.firstName}} {{product.author.lastName}}</span></div>
+          <div class="grid-amount"><input #amount type="number">/{{product.stock}}</div>
+          <div class="grid-add">
+            <button mat-button color="primary" (click)="addToCart(product, amount.value)">Add to cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #elseBlock>
+    <div *ngFor="let productType of shopData">
+      <div *ngFor="let category of productType.categories">
+        <div class="product-box-row" *ngFor="let product of category.products">
+          <div class="product-row">
+            <div class="row-img"><img src="{{product.thumbnailUrl}}" alt="Thumbnail"></div>
+            <div class="row-desc">{{product.description}}</div>
+            <div class="row-add">
+              <button mat-button color="primary" (click)="addToCart(product, amount.value)">Add to cart</button>
+            </div>
+            <div class="row-amount"><span><input #amount type="number">/{{product.stock}}</span></div>
+            <div class="row-author"><span>{{product.author.firstName}} {{product.author.lastName}}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+
+
+
+

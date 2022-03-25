@@ -1,0 +1,88 @@
+<div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width:100%">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef style="width: 100px"> Id</th>
+      <td mat-cell *matCellDef="let address"> {{address.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="country">
+      <th mat-header-cell *matHeaderCellDef style="width: 100px"> Country</th>
+      <td mat-cell *matCellDef="let address"> {{address.country}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="street">
+      <th mat-header-cell *matHeaderCellDef style="width: 100px"> Street</th>
+      <td mat-cell *matCellDef="let address"> {{address.country}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="city">
+      <th mat-header-cell *matHeaderCellDef style="width: 100px"> City</th>
+      <td mat-cell *matCellDef="let address"> {{address.city}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="zipCode">
+      <th mat-header-cell *matHeaderCellDef style="width: 100px"> Zip code</th>
+      <td mat-cell *matCellDef="let address"> {{address.zipCode}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="isActive">
+      <th mat-header-cell *matHeaderCellDef style="width: 100px"> Is active</th>
+      <td mat-cell *matCellDef="let address">
+        <span *ngIf="address.active; else elseColor" style="color:green">{{address.active}}</span>
+        <ng-template #elseColor><span style="color:red">{{address.active}}</span></ng-template>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef style="width: 100px"> Edit</th>
+      <td mat-cell *matCellDef="let address">
+        <a routerLink="/admin-address-edit/{{address.id}}/{{requestId}}" routerLinkActive="active">
+          <button mat-button color="primary">Edit</button>
+        </a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deactivate">
+      <th mat-header-cell *matHeaderCellDef style="width: 125px;"> Change status</th>
+      <td mat-cell *matCellDef="let address">
+        <div *ngIf="!address.defaultAddress">
+          <button *ngIf="address.active; else elseButton" (click)="deactivateAddress(address.id)" mat-button
+                  color="primary">
+            Deactivate
+          </button>
+          <ng-template #elseButton>
+            <button (click)="activateAddress(address.id)" mat-button color="primary">
+              Activate
+            </button>
+          </ng-template>
+        </div>
+      </td>
+
+      <ng-container matColumnDef="makeDefault">
+        <th mat-header-cell *matHeaderCellDef style="width: 100px"> Default</th>
+        <td mat-cell *matCellDef="let address">
+          <div *ngIf="address.defaultAddress || !address.active; else elseButton">
+            <div *ngIf="address.defaultAddress"> Default address
+            </div>
+          </div>
+          <ng-template #elseButton>
+            <button (click)="setDefault(address.id)" mat-button color="primary">
+              Set default
+            </button>
+          </ng-template>
+        </td>
+      </ng-container>
+
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+  </table>
+  <mat-paginator style="width:100%" #paginator [pageSizeOptions]="pageSizes"
+                 showFirstLastButtons></mat-paginator>
+</div>
+<a routerLink="/admin/0" routerLinkActive="active">
+  <button mat-button color="primary">Back</button>
+</a>
+
+
