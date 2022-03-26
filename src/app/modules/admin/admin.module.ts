@@ -12,11 +12,11 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {AuthorModule} from "../author/author.module";
 import {ProductModule} from "../product/product.module";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import { AdminUserEditComponent } from './admin-user-edit/admin-user-edit.component';
 import {MatOptionModule} from "@angular/material/core";
-import {MatSelectModule} from "@angular/material/select";
+import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import {MatIconModule} from "@angular/material/icon";
 
 
@@ -27,10 +27,12 @@ import {MatIconModule} from "@angular/material/icon";
     AdminUsersComponent,
     AdminAddressesComponent,
     AdminAddressEditComponent,
-    AdminUserEditComponent
+    AdminUserEditComponent,
+    AdminOrdersComponent,
+
   ],
   exports: [
-    AdminUsersComponent
+    AdminUsersComponent,
   ],
   imports: [
     CommonModule,
@@ -46,7 +48,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

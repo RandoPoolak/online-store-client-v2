@@ -51,7 +51,6 @@ export class UserEditComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private userService: UserService,
     private router: Router
-
   ) {
     this.enumRoles = Object.keys(this.roles);
     this.enumContactMethods = Object.keys(this.contactMethods);

@@ -9,7 +9,7 @@ export class Order{
   deliveryAddress: Address;
   orderStatus: OrderStatus;
   active: boolean;
-  orderLine: OrderLine[];
+  orderLines: OrderLine[];
   user: User;
 
   constructor(id: Number, orderDate: Date, deliveryAddress: Address, orderStatus: OrderStatus, active: boolean, orderLine: OrderLine[], user: User) {
@@ -18,7 +18,7 @@ export class Order{
     this.deliveryAddress = deliveryAddress;
     this.orderStatus = orderStatus;
     this.active = active;
-    this.orderLine = orderLine;
+    this.orderLines = orderLine;
     this.user = user;
   }
 }

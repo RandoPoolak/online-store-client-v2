@@ -1,10 +1,10 @@
 #divWeatherMain {
   display: block;
-  border-radius: 10px;
+  border-radius: 5px 5px 0 0;
   width: 200px;
   height: 270px;
   background: rgb(0, 0, 0);
-  background: linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(8, 7, 42, 1));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(8, 7, 42, 0.6));
   color: white;
   font-family: 'Sagoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -52,14 +52,13 @@
   display: inline-block;
   height: 64px;
   width: 200px;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(8, 7, 42, 1));
   color: white;
 }
 
 .dropdown-content{
   display:none;
   position: absolute;
+  top:-206px;
   width: 200px;
   height: 270px;
   box-shadow: 0 10px 20px 0 rgba(0,0,0,0.4);
@@ -75,7 +74,13 @@
 }
 
 .mini-widget{
+  display: inline-block;
   margin-left: 5px;
+  height: 64px;
+  width: 200px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(8, 7, 42, 0.6));
+  border-radius: 5px 5px 0 0;
 }
 
 .mini-widget .weatherWidgetRow{
@@ -122,11 +127,11 @@
 }
 
 .dropdown-content{
-  animation: growDown 300ms ease-in-out forwards;
-  transform-origin: top center;
+  animation: growUp 300ms ease-in-out forwards;
+  transform-origin: bottom center;
 }
 
-@keyframes growDown {
+@keyframes growUp {
   0% {
     transform: scaleY(0)
   }

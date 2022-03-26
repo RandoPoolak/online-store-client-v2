@@ -19,6 +19,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatInputModule} from "@angular/material/input";
+import {OrderModule} from "./modules/order/order.module";
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import {MatInputModule} from "@angular/material/input";
         MatIconModule,
         MatButtonToggleModule,
         MatInputModule,
+        OrderModule,
     ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

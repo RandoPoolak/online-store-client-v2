@@ -7,6 +7,9 @@ a {
 }
 
 .weather-container{
+  position:absolute;
+  right: 30px;
+  top: calc(100vh - 64px);
   height: 64px;
   width: 200px;
   float: right;
