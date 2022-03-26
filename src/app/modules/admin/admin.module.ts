@@ -16,7 +16,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import { AdminUserEditComponent } from './admin-user-edit/admin-user-edit.component';
 import {MatOptionModule} from "@angular/material/core";
-import {MatSelectModule} from "@angular/material/select";
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import {MatIconModule} from "@angular/material/icon";
 
