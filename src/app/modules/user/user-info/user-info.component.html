@@ -1,12 +1,45 @@
-<mat-card class="example-card">
-  <mat-card-title-group>
-    <mat-card-title>{{this.user.login}}</mat-card-title>
-    <mat-card-subtitle>
-      Email: {{this.user.contactMethod}}<br>
-      Primary address: {{this.primaryAddress.country}},{{primaryAddress.city}},{{this.primaryAddress.street}}, {{primaryAddress.zipCode}}
-    </mat-card-subtitle>
-    <img mat-card-xl-image src="{{this.user.logoUrl}}" alt="User Logo">
-  </mat-card-title-group>
-  <mat-card-content>
-  </mat-card-content>
-</mat-card>
+<!--<mat-card class="example-card">-->
+<!--  <mat-card-title-group>-->
+<!--    <mat-card-title>{{this.user.login}}</mat-card-title>-->
+<!--    <mat-card-subtitle>-->
+<!--      Email: {{this.user.contactMethod}}<br>-->
+<!--      Primary address: {{this.primaryAddress.country}},{{primaryAddress.city}},{{this.primaryAddress.street}}-->
+<!--      , {{primaryAddress.zipCode}}-->
+
+
+<!--      <app-user-edit></app-user-edit>-->
+
+<!--    </mat-card-subtitle>-->
+<!--    <img mat-card-xl-image src="{{this.user.logoUrl}}" alt="User Logo">-->
+<!--  </mat-card-title-group>-->
+<!--  <mat-card-content>-->
+<!--  </mat-card-content>-->
+
+<!--</mat-card>-->
+
+
+<form [formGroup]="userEditForm" (ngSubmit)="onSubmit()">
+  <img mat-card-xl-image src="{{this.user.logoUrl}}" alt="User Logo" style="float: right; max-width: 300px; max-height: 300px">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Login:</mat-label>
+    <input matInput formControlName="login">
+  </mat-form-field><br>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Logo url:</mat-label>
+    <input matInput formControlName="logoUrl">
+  </mat-form-field><br>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Contact method:</mat-label>
+    <mat-select formControlName="contactMethod">
+      <mat-option>Contact method</mat-option>
+      <mat-option *ngFor="let contactMethod of enumContactMethods" [value]="contactMethod">
+        {{contactMethod}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field><br>
+
+  <button type="submit" [disabled]="!userEditForm.valid" mat-button color="primary">Save</button>
+</form>

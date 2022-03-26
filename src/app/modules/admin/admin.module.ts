@@ -17,6 +17,7 @@ import {MatInputModule} from "@angular/material/input";
 import { AdminUserEditComponent } from './admin-user-edit/admin-user-edit.component';
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -44,7 +45,8 @@ import {MatSelectModule} from "@angular/material/select";
     ReactiveFormsModule,
     MatInputModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ]
 })
 export class AdminModule { }

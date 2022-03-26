@@ -19,7 +19,7 @@ export class AddressService {
     return this.httpClient.get(this.ADDRESS_BASE_URL + "/restore/" + id)
   }
 
-  public deactivateAddress(id: number): Observable<unknown> {
+  public deactivateAddress(id: Number): Observable<unknown> {
     return this.httpClient.get(this.ADDRESS_BASE_URL + "/delete/" + id)
   }
 

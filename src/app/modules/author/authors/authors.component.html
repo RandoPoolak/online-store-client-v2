@@ -27,7 +27,7 @@
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef style="width: 100px"> Edit</th>
       <td mat-cell *matCellDef="let author"><a routerLink="/author-edit/{{author.id}}" routerLinkActive="active">
-        <button mat-button color="primary">Edit</button>
+        <button mat-button color="primary"><mat-icon>edit</mat-icon></button>
       </a>
       </td>
     </ng-container>
@@ -36,11 +36,11 @@
       <th mat-header-cell *matHeaderCellDef style="width: 125px;"> Change status</th>
       <td mat-cell *matCellDef="let author">
         <button *ngIf="author.active; else elseButton" (click)="deactivateAuthor(author.id)" mat-button color="primary">
-          Deactivate
+          <mat-icon>check_circle_outline</mat-icon>
         </button>
         <ng-template #elseButton>
           <button (click)="activateAuthor(author.id)" mat-button color="primary">
-            Activate
+            <mat-icon>check_circle</mat-icon>
           </button>
         </ng-template>
       </td>
