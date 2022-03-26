@@ -27,6 +27,7 @@
           <div class="dropdown-content">
             <div *ngFor="let orderLine of order.orderLines">
               {{orderLine.product.description}} - {{orderLine.quantity}}pc for {{orderLine.quantity * orderLine.product.price}}€
+              <hr>
             </div>
           </div>
         </div>

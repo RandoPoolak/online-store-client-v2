@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from "@angular/material/paginator";
 import {User} from "../../../shared/models/User";
 import {MatTableDataSource} from "@angular/material/table";
 import {UserService} from "../../../shared/services/user.service";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-admin-users',
@@ -24,7 +24,7 @@ export class AdminUsersComponent implements OnInit {
     this.userService.getAllUsers().subscribe(value =>{
       this.users= <User[]>value;
       this.dataSource.data = this.users as User[];
-      this.dataSource.paginator = this.paginator
+      this.dataSource.paginator = this.paginator;
     })
   }
 
@@ -33,8 +33,7 @@ export class AdminUsersComponent implements OnInit {
   }
 
   deactivateUser(id:number):void{
-    this.userService.deactivateUser(id).subscribe((data) =>{
-      console.log(data);
+    this.userService.deactivateUser(id).subscribe(() =>{
       this.ngOnInit();
     })
   }

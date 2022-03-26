@@ -13,13 +13,15 @@
       <li class="dropdown">
         <a class="dropbtn"><i class="fa-solid fa-user"></i></a>
         <div class="dropdown-content">
-          <a routerLink="/user-settings/10/0" routerLinkActive="active">User settings</a>
-          <a routerLink="/order" routerLinkActive="active">Order history</a>
+          <a routerLink="/user-settings/1/0" routerLinkActive="active">User settings</a>
+          <a routerLink="/orders" routerLinkActive="active">Order history</a>
           <a routerLink="/log-out" routerLinkActive="active">Log out</a>
         </div>
       </li>
     </ul>
   </div>
-
+      <div class="weather-container">
+        <app-weather-widget></app-weather-widget>
+      </div>
 </mat-toolbar>
 <router-outlet></router-outlet>

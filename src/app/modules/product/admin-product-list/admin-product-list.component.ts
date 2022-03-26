@@ -5,8 +5,6 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 
-
-
 @Component({
   selector: 'app-admin-product-list',
   templateUrl: './admin-product-list.component.html',

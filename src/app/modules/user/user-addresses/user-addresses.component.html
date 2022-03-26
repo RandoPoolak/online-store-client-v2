@@ -49,10 +49,10 @@
 <!--</div>-->
 
 
-<div *ngFor="let address of user.addresses">
+<div *ngFor="let address of user.addresses" style="margin-bottom: 70px">
   <div>
     <div *ngIf="address.defaultAddress"> Your current default address:
-      <span>{{address.street}}, {{address.city}}, {{address.country}}, {{address.zipCode}} </span>
+      <span style="font-weight: 700">{{address.street}}, {{address.city}}, {{address.country}}, {{address.zipCode}} </span>
     </div>
   </div>
 </div>

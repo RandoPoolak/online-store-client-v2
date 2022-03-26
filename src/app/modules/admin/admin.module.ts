@@ -18,6 +18,7 @@ import { AdminUserEditComponent } from './admin-user-edit/admin-user-edit.compon
 import {MatOptionModule} from "@angular/material/core";
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import {MatIconModule} from "@angular/material/icon";
+import {MatSelectModule} from "@angular/material/select";
 
 
 
@@ -39,7 +40,6 @@ import {MatIconModule} from "@angular/material/icon";
     MatTableModule,
     RouterModule,
     MatButtonModule,
-    MatPaginatorModule,
     MatTabsModule,
     AuthorModule,
     ProductModule,
@@ -49,7 +49,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatOptionModule,
     MatSelectModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule
   ]
 })
 export class AdminModule { }
