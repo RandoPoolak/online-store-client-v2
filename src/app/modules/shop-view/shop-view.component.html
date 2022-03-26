@@ -56,7 +56,9 @@
           <div class="grid-img"><img src="{{product.thumbnailUrl}}" alt="Thumbnail"></div>
           <div class="grid-desc">{{product.description}}</div>
           <div class="grid-author"><span>{{product.author.firstName}} {{product.author.lastName}}</span></div>
-          <div class="grid-amount"><input #amount type="number">/{{product.stock}}</div>
+          <div class="grid-amount">
+            <input #amount [value]="amount" type="number">
+          </div>
           <div class="grid-add">
             <button mat-button color="primary" (click)="addToCart(product, amount.value)">Add to cart</button>
           </div>
@@ -73,9 +75,13 @@
             <div class="row-img"><img src="{{product.thumbnailUrl}}" alt="Thumbnail"></div>
             <div class="row-desc">{{product.description}}</div>
             <div class="row-add">
-              <button mat-button color="primary" (click)="addToCart(product, amount.value)">Add to cart</button>
+              <button mat-button color="primary" (click)="addToCart(product, amount.value )">Add to cart</button>
             </div>
-            <div class="row-amount"><span><input #amount type="number">/{{product.stock}}</span></div>
+            <div class="row-amount">
+              <span>
+                <input #amount type="number">
+              </span>
+            </div>
             <div class="row-author"><span>{{product.author.firstName}} {{product.author.lastName}}</span></div>
           </div>
         </div>

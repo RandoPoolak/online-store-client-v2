@@ -1,0 +1,49 @@
+.cart-box {
+  height: calc(100vh - 64px);
+  margin-left: 20px;
+  margin-top: 84px;
+}
+
+.cart-element {
+  width: 610px;
+  height: 112px;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.cart-img {
+  float: left;
+  overflow: hidden;
+  height: 100px;
+  width: 150px;
+}
+
+.cart-desc {
+  float: left;
+  margin-top: 25px;
+  height: 50px;
+  width: 300px;
+}
+
+.number-box {
+  float: left;
+  height: 100px;
+  width: 145px;
+}
+
+.number-box .cart-order-size input {
+  width: 30%;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.number-box .button {
+  position: relative;
+  right: -119px;
+  top: 0;
+  width: 25px;
+  height: 25px;
+  color: red;
+}
