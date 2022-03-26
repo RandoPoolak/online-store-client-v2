@@ -18,6 +18,7 @@ import {MatTabsModule} from "@angular/material/tabs";
 import { UserInfoComponent } from './user-info/user-info.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -45,6 +46,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         MatListModule,
         MatTabsModule,
         MatCardModule,
+        MatIconModule,
     ]
 })
 export class UserModule { }

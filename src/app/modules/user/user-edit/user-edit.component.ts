@@ -88,7 +88,7 @@ export class UserEditComponent implements OnInit {
     updatedUser.id = this.user.id;
     updatedUser.active = this.user.active;
     this.userService.updateUser(updatedUser).subscribe(()=>{
-      this.router.navigate(['/user-settings/' + this.requestId as String + '/1']).then(r => console.log("Redirected ->"+r));
+      this.router.navigate(['/user-settings/' + this.requestId as String + '/0']).then(r => console.log("Redirected ->"+r));
       location.reload();
     });
   }

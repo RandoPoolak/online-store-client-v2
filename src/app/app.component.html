@@ -1,16 +1,24 @@
 <mat-toolbar color="accent">
   <div style="width: 100%">
       <span>
-        <a routerLink="/shop" routerLinkActive="active">Home</a>
-        <a routerLink="/order" routerLinkActive="active">Orders</a>
-        <a routerLink="/user-settings/1/0" routerLinkActive="active">User settings</a>
-        <a routerLink="/log-out" routerLinkActive="active">Log out</a>
-        <a routerLink="/cart" routerLinkActive="active">Cart</a>
+        <a routerLink="/shop" routerLinkActive="active"><mat-icon>home</mat-icon></a>
         <a routerLink="/admin/0" routerLinkActive="active">Admin</a>
       </span>
-    <div class="weather-container">
-      <app-weather-widget></app-weather-widget>
-    </div>
+  </div>
+
+  <a routerLink="/cart" routerLinkActive="active"><mat-icon>shopping_cart</mat-icon></a>
+
+  <div>
+    <ul>
+      <li class="dropdown">
+        <a class="dropbtn"><i class="fa-solid fa-user"></i></a>
+        <div class="dropdown-content">
+          <a routerLink="/user-settings/10/0" routerLinkActive="active">User settings</a>
+          <a routerLink="/order" routerLinkActive="active">Order history</a>
+          <a routerLink="/log-out" routerLinkActive="active">Log out</a>
+        </div>
+      </li>
+    </ul>
   </div>
 
 </mat-toolbar>

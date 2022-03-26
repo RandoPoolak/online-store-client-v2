@@ -51,7 +51,7 @@ export class UserAddressesComponent implements OnInit {
   requestId: number = 0;
   activeAddresses: Address[] = [];
 
-  displayColumns: string[] = ['country', 'city', 'street', 'zipCode', 'isActive', 'edit', 'deactivate','makeDefault']
+  displayColumns: string[] = ['address', 'edit', 'deactivate','makeDefault']
 
   constructor(
     private addressService: AddressService,
@@ -84,13 +84,13 @@ export class UserAddressesComponent implements OnInit {
     })
   }
 
-  deactivateAddress(id: number): void {
+  deactivateAddress(id: Number): void {
     this.addressService.deactivateAddress(id).subscribe(() => {
       this.ngOnInit();
     })
   }
 
-  setDefault(id: number): void{
+  setDefault(id: Number): void{
     for (let address of this.user.addresses) {
       address.defaultAddress = address.id == id;
     }
