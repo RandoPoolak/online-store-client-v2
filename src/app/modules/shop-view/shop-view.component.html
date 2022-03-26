@@ -53,7 +53,11 @@
     <div *ngFor="let productType of shopData">
       <div *ngFor="let category of productType.categories">
         <div class="product-grid" *ngFor="let product of category.products">
-          <div class="grid-img"><img src="{{product.thumbnailUrl}}" alt="Thumbnail"></div>
+          <div class="grid-img">
+            <a routerLink="/product/{{product.id}}" routerLinkActive="active">
+              <img src="{{product.thumbnailUrl}}" alt="Thumbnail">
+            </a>
+          </div>
           <div class="grid-desc">{{product.description}}</div>
           <div class="grid-author"><span>{{product.author.firstName}} {{product.author.lastName}}</span></div>
           <div class="grid-amount">
@@ -72,7 +76,11 @@
       <div *ngFor="let category of productType.categories">
         <div class="product-box-row" *ngFor="let product of category.products">
           <div class="product-row">
-            <div class="row-img"><img src="{{product.thumbnailUrl}}" alt="Thumbnail"></div>
+            <div class="row-img">
+              <a routerLink="/product/{{product.id}}" routerLinkActive="active">
+                <img src="{{product.thumbnailUrl}}" alt="Thumbnail">
+              </a>
+            </div>
             <div class="row-desc">{{product.description}}</div>
             <div class="row-add">
               <button mat-button color="primary" (click)="addToCart(product, amount.value )">Add to cart</button>

@@ -17,6 +17,7 @@ import {AdminAddressEditComponent} from "./modules/admin/admin-address-edit/admi
 import {AdminUserEditComponent} from "./modules/admin/admin-user-edit/admin-user-edit.component";
 import {CartComponent} from "./modules/order/cart/cart.component";
 import {OrdersComponent} from "./modules/order/orders/orders.component";
+import {ProductViewComponent} from "./modules/product/product-view/product-view.component";
 
 
 
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'user-settings/:userId/:tabIndex', component: UserSettingsComponent},
   {path: 'cart', component:CartComponent},
   {path: 'orders', component:OrdersComponent},
+  {path: 'product/:productId', component:ProductViewComponent}
 ];
 
 @NgModule({

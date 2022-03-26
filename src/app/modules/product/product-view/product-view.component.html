@@ -1,0 +1,17 @@
+<mat-card class="card">
+  <mat-card-header>
+    <div mat-card-avatar [style.backgroundImage]="'url(' + product.thumbnailUrl + ')'" style="background-size: cover;"></div>
+    <mat-card-title>{{product.description}}</mat-card-title>
+    <mat-card-subtitle>{{product.author.firstName}} {{product.author.lastName}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{product.thumbnailUrl}}" alt="Photo of product">
+  <mat-card-content>
+    <p>
+      Maybe we should add bigger description box for products
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+      <input #amount [value]="amount" type="number">
+      <button mat-button color="primary" (click)="addToCart(product, amount.value)">Add to cart</button>
+  </mat-card-actions>
+</mat-card>

@@ -19,6 +19,7 @@ import { AdminProductListComponent } from './admin-product-list/admin-product-li
 import {MatCardModule} from "@angular/material/card";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { ProductViewComponent } from './product-view/product-view.component';
 
 
 
@@ -31,6 +32,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         CategoryEditComponent,
         ProductEditComponent,
         AdminProductListComponent,
+        ProductViewComponent,
     ],
     exports: [
         ProductTreeComponent,
