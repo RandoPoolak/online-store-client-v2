@@ -7,7 +7,7 @@
 
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef style="width: 100px"> Order Date</th>
-      <td mat-cell *matCellDef="let order"> {{order.orderDate}} </td>
+      <td mat-cell *matCellDef="let order"> {{order.orderDate | date:'longDate'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="status">

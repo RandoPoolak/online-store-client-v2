@@ -59,7 +59,6 @@ export class CartComponent implements OnInit {
 
     let order = new Order(0, new Date(), defaultAddress,
       OrderStatus.PENDING, true, this.orderLines, this.user);
-
     this.orderService.createOrder(order).subscribe(() => {
       this.openSnackBar("Order status PENDING, until payment is completed", "Done")
       this.router.navigate(['orders']).then(r => console.log('Redirected => '+r));

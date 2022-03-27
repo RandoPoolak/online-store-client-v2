@@ -15,7 +15,8 @@ export class UserEditComponent implements OnInit {
   user: User = {
     active: false,
     id: 0,
-    login: "",
+    email: "",
+    userName: "",
     logoUrl: "",
     password: "",
     role: Role.USER,
@@ -32,7 +33,8 @@ export class UserEditComponent implements OnInit {
   }
 
   userEditForm = this.formBuilder.group({
-    login: new FormControl(),
+    email: new FormControl(),
+    userName: new FormControl(),
     password: new FormControl(),
     logoUrl: new FormControl(),
     role: new FormControl(),
@@ -72,7 +74,8 @@ export class UserEditComponent implements OnInit {
 
   initForm(){
     this.userEditForm = this.formBuilder.group({
-        login: [this.user.login, Validators.required],
+        email: [this.user.email, Validators.required],
+        userName: [this.user.userName, Validators.required],
         password: [this.user.password, Validators.required],
         logoUrl: [this.user.logoUrl, Validators.required],
         role: [this.user.role, Validators.required],

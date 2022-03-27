@@ -24,7 +24,8 @@ export class UserAddressesComponent implements OnInit {
   user: User = {
     active: false,
     id: 0,
-    login: "",
+    email: "",
+    userName: "",
     logoUrl: "",
     password: "",
     role: Role.USER,
@@ -79,7 +80,6 @@ export class UserAddressesComponent implements OnInit {
           this.activeAddresses.push(address)
         }
       }
-      console.log(this.activeAddresses);
       this.dataSource.data = this.activeAddresses;
     })
   }

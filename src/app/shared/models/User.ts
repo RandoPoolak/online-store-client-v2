@@ -4,7 +4,8 @@ import {Address} from "./Address";
 
 export class User{
   id: Number;
-  login: String;
+  email: String;
+  userName: String;
   password: String;
   logoUrl: String;
   role: Role;
@@ -12,9 +13,10 @@ export class User{
   addresses: Address[];
   active: boolean
 
-  constructor(id: Number, login: String, password: String, logoUrl: String, role: Role, contactMethod: ContactMethod, addresses: Address[], active: boolean) {
+  constructor(id: Number, email: String, userName: String, password: String, logoUrl: String, role: Role, contactMethod: ContactMethod, addresses: Address[], active: boolean) {
     this.id = id;
-    this.login = login;
+    this.email = email;
+    this.userName = userName;
     this.password = password;
     this.logoUrl = logoUrl;
     this.role = role;

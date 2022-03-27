@@ -14,7 +14,7 @@ export class AdminUsersComponent implements OnInit {
   users: User[] = [];
   dataSource = new MatTableDataSource<User>([]);
   pageSizes = [10,25,50];
-  displayColumns: string[] = ['id','login','password',
+  displayColumns: string[] = ['id','email','userName','password',
     'logoUrl','role','contactMethod','isActive',
     'address','edit','deactivate'];
 
@@ -22,8 +22,7 @@ export class AdminUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe(value =>{
-      this.users= <User[]>value;
-      this.dataSource.data = this.users as User[];
+      this.dataSource.data = value as User[];
       this.dataSource.paginator = this.paginator;
     })
   }

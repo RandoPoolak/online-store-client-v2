@@ -25,7 +25,7 @@ export class AdminProductListComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe(productData => {
       this.dataSource.data = productData as Product[];
-      this.dataSource.paginator = this.paginator
+      this.dataSource.paginator = this.paginator;
     })
   }
 

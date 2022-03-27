@@ -1,7 +1,12 @@
 <form [formGroup]="userEditForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="fill">
-    <mat-label>Login:</mat-label>
-    <input matInput formControlName="login">
+    <mat-label>Email:</mat-label>
+    <input matInput formControlName="email">
+  </mat-form-field><br>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Name:</mat-label>
+    <input matInput formControlName="userName">
   </mat-form-field><br>
 
   <mat-form-field appearance="fill">

@@ -33,10 +33,6 @@ export class AdminOrdersComponent implements OnInit {
   ngOnInit(): void {
 
     this.orderService.getAllOrders().subscribe(orders =>{
-      for(let order of orders as Order[]){
-        // No idea how to get the date, Console log shows array. If you hover on order.orderDate its date value
-        // order.orderDate = new Date(order.orderDate);
-      }
       this.dataSource.data = orders as Order[];
       this.dataSource.paginator = this.paginator;
 
