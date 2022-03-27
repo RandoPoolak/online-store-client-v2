@@ -1,5 +1,5 @@
 <div class="cart-box">
-  <div *ngIf="orderLines.length > 0; else elseBlock">
+  <div *ngIf="undefined !== orderLines && orderLines.length; else elseBlock">
     <div class="cart-element" *ngFor="let orderLine of orderLines">
       <div class="cart-img"><img src="{{orderLine.product.thumbnailUrl}}" alt="Thumbnail"></div>
       <div class="cart-desc">{{orderLine.product.description}}</div>

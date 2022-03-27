@@ -20,7 +20,7 @@ export class OrderService {
     return this.httpClient.post(this.ORDER_LINE_BASE_URL+"/create", newOrderLine)
   }
 
-  public deleteOrderLine(id:number){
+  public deleteOrderLine(id:Number){
     return this.httpClient.get(this.ORDER_LINE_BASE_URL+"/delete/"+id)
   }
 

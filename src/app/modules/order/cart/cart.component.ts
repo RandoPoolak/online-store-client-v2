@@ -33,7 +33,7 @@ export class CartComponent implements OnInit {
     })
   }
 
-  deleteLine(id:number) {
+  deleteLine(id:Number) {
     this.orderService.deleteOrderLine(id).subscribe(() => this.ngOnInit())
   }
 
