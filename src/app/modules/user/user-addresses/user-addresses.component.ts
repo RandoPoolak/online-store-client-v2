@@ -1,14 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {User} from "../../../shared/models/User";
-import {Role} from "../../../shared/models/Role";
-import {ContactMethod} from "../../../shared/models/ContactMethod";
 import {Address} from "../../../shared/models/Address";
 import {AddressService} from "../../../shared/services/address.service";
 import {UserService} from "../../../shared/services/user.service";
-import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
+import {WeatherWidgetComponent} from "../../weather-widget/weather-widget.component";
+import {UtilService} from "../../../shared/services/util.service";
 
 @Component({
   selector: 'app-user-addresses',
@@ -16,30 +15,10 @@ import {MatPaginator} from "@angular/material/paginator";
   styleUrls: ['./user-addresses.component.css']
 })
 export class UserAddressesComponent implements OnInit {
-
   @ViewChild('paginator') paginator: MatPaginator;
   pageSizes = [10,25,50];
   dataSource = new MatTableDataSource<Address>([])
-
-  user: User = {
-    active: false,
-    id: 0,
-    email: "",
-    userName: "",
-    logoUrl: "",
-    password: "",
-    role: Role.USER,
-    contactMethod: ContactMethod.EMAIL,
-    addresses: [{
-      id: 0,
-      country: "",
-      city: "",
-      street: "",
-      zipCode: "",
-      defaultAddress: true,
-      active: false
-    }],
-  }
+  user: User;
 
   newAddressForm = this.formBuilder.group({
       country: new FormControl("", Validators.required),
@@ -49,53 +28,50 @@ export class UserAddressesComponent implements OnInit {
     }
   )
 
-  requestId: number = 0;
-  activeAddresses: Address[] = [];
 
   displayColumns: string[] = ['address', 'edit', 'deactivate','makeDefault']
 
   constructor(
     private addressService: AddressService,
     private userService: UserService,
-    private activeRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-  ) {
+    private weather: WeatherWidgetComponent,
+    private util: UtilService,
+    ) {
   }
 
   ngOnInit(): void {
-    this.activeRoute.params.subscribe(params => {
-      this.requestId = +params["userId"];
-      this.requestUser(this.requestId);
-    })
-
+    this.user = JSON.parse(sessionStorage.getItem('user')!);
+    this.prepareData(this.user);
   }
 
-  requestUser(id: number) {
-    this.activeAddresses = [];
-    this.userService.getUserById(id).subscribe(value => {
-      this.user = <User>value;
-      this.dataSource.paginator = this.paginator;
-      for (let address of this.user.addresses) {
-        if (address.active) {
-          this.activeAddresses.push(address)
-        }
-      }
-      this.dataSource.data = this.activeAddresses;
-    })
+  prepareData(user: User){
+    this.dataSource.data = this.util.getUserActiveAddresses(user);
+    this.dataSource.paginator = this.paginator;
   }
+
 
   deactivateAddress(id: Number): void {
     this.addressService.deactivateAddress(id).subscribe(() => {
+      this.user.addresses.forEach(address => {
+        if(address.id == id){
+          address.active = false;
+        }
+      })
+      sessionStorage.setItem('user', JSON.stringify(this.user));
       this.ngOnInit();
     })
   }
 
   setDefault(id: Number): void{
-    for (let address of this.user.addresses) {
+    for(let address of this.user.addresses){
       address.defaultAddress = address.id == id;
     }
+    this.util.updateUserSessionInfo(this.user);
     this.userService.updateUser(this.user).subscribe(() => {
-      this.ngOnInit();
+      this.weather.updateUserLocation();
+      window.history.replaceState({}, '',"user-settings/1");
+      window.location.reload();
     })
   }
 
@@ -104,7 +80,9 @@ export class UserAddressesComponent implements OnInit {
     newAddress.defaultAddress = false;
     newAddress.active = true;
     this.user.addresses.push(newAddress);
-    this.userService.updateUser(this.user).subscribe(() => {
+    this.userService.updateUser(this.user).subscribe(response => {
+      let updatedUser = response as User;
+      sessionStorage.setItem('user', JSON.stringify(updatedUser));
       this.ngOnInit();
       this.newAddressForm.reset();
     });

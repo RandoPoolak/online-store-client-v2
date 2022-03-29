@@ -23,7 +23,11 @@ export class CategoryEditComponent implements OnInit {
     private productService: ProductService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-  ) { }
+  ) {
+    if(JSON.parse(sessionStorage.getItem('userRole')!) != "ADMIN"){
+      this.router.navigate(['/not-allowed']).then();
+    }
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params =>{

@@ -32,7 +32,11 @@ export class ProductEditComponent implements OnInit {
     private productService: ProductService,
     private authorService: AuthorService,
     private router: Router
-  ) {}
+  ) {
+    if(JSON.parse(sessionStorage.getItem('userRole')!) != "ADMIN"){
+      this.router.navigate(['/not-allowed']).then();
+    }
+  }
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe(params =>{

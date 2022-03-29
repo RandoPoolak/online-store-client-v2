@@ -29,6 +29,9 @@ export class AuthorEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router
   ) {
+    if(JSON.parse(sessionStorage.getItem('userRole')!) != "ADMIN"){
+      this.router.navigate(['/not-allowed']).then();
+    }
   }
 
   ngOnInit(): void {

@@ -39,7 +39,11 @@ export class AdminAddressEditComponent implements OnInit {
     private addressService: AddressService,
     private userService: UserService,
     private router: Router
-  ) { }
+  ) {
+    if(JSON.parse(sessionStorage.getItem('userRole')!) != "ADMIN"){
+      this.router.navigate(['/not-allowed']).then();
+    }
+  }
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe(params => {

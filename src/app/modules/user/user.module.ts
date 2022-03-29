@@ -4,7 +4,6 @@ import {UserSettingsComponent} from "./user-settings/user-settings.component";
 import {MatTableModule} from "@angular/material/table";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterModule} from "@angular/router";
-import { UserEditComponent } from './user-edit/user-edit.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -25,7 +24,6 @@ import {MatIconModule} from "@angular/material/icon";
 @NgModule({
   declarations: [
     UserSettingsComponent,
-    UserEditComponent,
     UserAddressEditComponent,
     UserAddressesComponent,
     UserPasswordEditComponent,

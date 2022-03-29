@@ -2,26 +2,43 @@
   <div style="width: 100%">
       <span>
         <a routerLink="/shop" routerLinkActive="active"><mat-icon>home</mat-icon></a>
-        <a routerLink="/admin/0" routerLinkActive="active">Admin</a>
       </span>
   </div>
 
-  <a routerLink="/cart" routerLinkActive="active"><mat-icon>shopping_cart</mat-icon></a>
-
-  <div>
+  <div *ngIf="user == null">
+    <button>
+      <a routerLink="/register" routerLinkActive="active">Register</a>
+    </button>
+    <button>
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+    </button>
+  </div>
+  <a routerLink="/cart" routerLinkActive="active">
+    <mat-icon>shopping_cart</mat-icon>
+  </a>
+  <div *ngIf="user != null">
     <ul>
       <li class="dropdown">
-        <a class="dropbtn"><i class="fa-solid fa-user"></i></a>
+        <a class="dropbtn"><mat-icon>account_circle</mat-icon></a>
         <div class="dropdown-content">
-          <a routerLink="/user-settings/1/0" routerLinkActive="active">User settings</a>
-          <a routerLink="/orders" routerLinkActive="active">Order history</a>
-          <a routerLink="/log-out" routerLinkActive="active">Log out</a>
+          <button style="width: 100%">
+            <a routerLink="/user-settings/0" routerLinkActive="active">User settings</a>
+          </button><br>
+          <button style="width: 100%">
+            <a routerLink="/orders" routerLinkActive="active">Order history</a>
+          </button><br>
+          <div *ngIf="userRole == 'ADMIN'">
+          <button style="width: 100%" >
+            <a routerLink="/admin/0" routerLinkActive="active">Admin Tools</a>
+          </button><br>
+          </div>
+          <button style="width: 100%" (click)="logout()"><a>Log out</a></button>
         </div>
       </li>
     </ul>
   </div>
-      <div class="weather-container">
-        <app-weather-widget></app-weather-widget>
-      </div>
+  <div class="weather-container" *ngIf="user != null">
+    <app-weather-widget></app-weather-widget>
+  </div>
 </mat-toolbar>
 <router-outlet></router-outlet>

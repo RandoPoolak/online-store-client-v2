@@ -3,6 +3,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {Order} from "../../../shared/models/Order";
 import {OrderService} from "../../../shared/services/order.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-active-orders',
@@ -14,14 +15,19 @@ export class ActiveOrdersComponent implements OnInit {
   dataSource = new MatTableDataSource<Order>([]);
   pageSizes = [10,25,50];
   displayColumns: string[] = ['id','date', 'status', 'products'];
-  userId: number = 1;
 
   constructor(
     private orderService: OrderService,
-  ) { }
+    private router: Router,
+  ) {
+    if(sessionStorage.getItem('user') == null){
+      this.router.navigate(['/not-allowed']).then();
+    }
+  }
 
   ngOnInit(): void {
-    this.orderService.getAllActiveOrders(this.userId).subscribe(orders =>{
+    let user = JSON.parse(sessionStorage.getItem('user')!);
+    this.orderService.getAllActiveOrders(user.id).subscribe(orders =>{
       this.dataSource.data = orders as Order[];
       this.dataSource.paginator = this.paginator;
     })

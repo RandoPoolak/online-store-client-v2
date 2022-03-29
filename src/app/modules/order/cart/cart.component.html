@@ -1,4 +1,7 @@
 <div class="cart-box">
+  <div *ngIf="user == null && undefined !== orderLines && orderLines.length">
+    <p>To continue with checkout you should login or register new user</p>
+  </div>
   <div *ngIf="undefined !== orderLines && orderLines.length; else elseBlock">
     <div class="cart-element" *ngFor="let orderLine of orderLines">
       <div class="cart-img"><img src="{{orderLine.product.thumbnailUrl}}" alt="Thumbnail"></div>
@@ -14,12 +17,16 @@
         </div>
       </div>
     </div>
-    <div>
+    <div *ngIf="user != null; else noUser">
       <button mat-button color="primary" (click)="confirmOrder()">Confirm order</button>
     </div>
+    <ng-template #noUser>
+      <div>
+        <button mat-button color="primary" (click)="updateOrderInfo()">Update order</button>
+      </div>
+    </ng-template>
   </div>
   <ng-template #elseBlock>
     <div>Nothing in the cart</div>
   </ng-template>
-
 </div>

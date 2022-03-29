@@ -11,7 +11,7 @@ export class OrderService {
   private ORDER_LINE_BASE_URL = 'order-line'
   constructor(private httpClient: HttpClient) { }
 
-  public getUserActiveAllOrderLines(id:number){
+  public getUserActiveAllOrderLines(id:Number){
     return this.httpClient.get(this.ORDER_LINE_BASE_URL+"/user/"+id);
   }
 
@@ -26,7 +26,6 @@ export class OrderService {
 
   public createOrder(order: Order){
     let newOrder = JSON.stringify(order)
-    console.log(newOrder)
     return this.httpClient.post(this.ORDER_BASE_URL+"/create", newOrder)
   }
 

@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {WeatherServiceService} from "../../shared/services/weather-service.service";
+import {Address} from "../../shared/models/Address";
 
 @Component({
   selector: 'app-weather-widget',
   templateUrl: './weather-widget.component.html',
   styleUrls: ['./weather-widget.component.css']
 })
+@Injectable({
+  providedIn: 'root',
+})
 export class WeatherWidgetComponent implements OnInit {
-
+  userLocation: Address;
   weatherData:any;
   constructor(
     private weatherWidgetService: WeatherServiceService,
@@ -15,13 +19,25 @@ export class WeatherWidgetComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.updateUserLocation()
+
+  }
+
+  updateUserLocation(){
+    if(sessionStorage.getItem('defaultAddress') != null){
+      this.userLocation = JSON.parse(sessionStorage.getItem('defaultAddress')!);
+      this.getWeatherData(this.userLocation);
+    }
+  }
+
+  getWeatherData(address: Address){
     this.weatherData = {
       main : {},
       isDay: true,
     };
-    this.weatherWidgetService.getWeatherData('tallinn').subscribe(data =>{
-      let dataTest = JSON.stringify(data);
-      this.setWeatherData(JSON.parse(dataTest));
+    this.weatherWidgetService.getWeatherData(address.city).subscribe(data =>{
+      let dataString = JSON.stringify(data);
+      this.setWeatherData(JSON.parse(dataString));
     })
   }
 

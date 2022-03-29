@@ -20,6 +20,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatInputModule} from "@angular/material/input";
 import {OrderModule} from "./modules/order/order.module";
+import {LoginRegisterModule} from "./modules/login-register/login-register.module";
+import { NotAllowedComponent } from './modules/bad-requests/not-allowed/not-allowed.component';
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import {OrderModule} from "./modules/order/order.module";
     AppComponent,
     ShopViewComponent,
     WeatherWidgetComponent,
+    NotAllowedComponent,
   ],
     imports: [
         BrowserModule,
@@ -46,6 +49,7 @@ import {OrderModule} from "./modules/order/order.module";
         MatButtonToggleModule,
         MatInputModule,
         OrderModule,
+        LoginRegisterModule
     ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

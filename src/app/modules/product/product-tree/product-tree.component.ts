@@ -27,7 +27,8 @@ export class ProductTreeComponent implements OnInit {
   constructor(
     private treeNodeService: TreeNodeService,
     private formBuilder: FormBuilder,
-    private productService: ProductService) {
+    private productService: ProductService,
+  ) {
     this.updateInfo();
   }
 

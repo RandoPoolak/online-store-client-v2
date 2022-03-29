@@ -27,7 +27,11 @@ export class ProductTypeNewSubComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private productService: ProductService
-  ) { }
+  ) {
+    if(JSON.parse(sessionStorage.getItem('userRole')!) != "ADMIN"){
+      this.router.navigate(['/not-allowed']).then();
+    }
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{

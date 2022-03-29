@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-settings',
@@ -8,14 +8,20 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class UserSettingsComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    ) {
+    if (sessionStorage.getItem('user') == null) {
+      this.router.navigate(['/not-allowed']).then();
+    }
+  }
+
   tabIndex: number = 0;
-  userId: number = 0;
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params =>{
-      this.userId = +params['userId'];
-      this.tabIndex = +params['tabIndex'];
+      this.tabIndex = +params['tabIndex']
     })
   }
 }

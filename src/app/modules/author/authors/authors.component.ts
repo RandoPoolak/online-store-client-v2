@@ -5,6 +5,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 
+
 @Component({
   selector: 'app-authors',
   templateUrl: './authors.component.html',
@@ -13,10 +14,10 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
 export class AuthorsComponent implements OnInit {
   @ViewChild('paginator') paginator: MatPaginator;
 
-  pageSizes = [10,25,50];
+  pageSizes = [10, 25, 50];
   authors: Author[] = [];
   dataSource = new MatTableDataSource<Author>([]);
-  displayColumns: string[] = ['id','firstName','lastName','isActive','deactivate', 'edit']
+  displayColumns: string[] = ['id', 'firstName', 'lastName', 'isActive', 'deactivate', 'edit']
 
   author: Author = {
     active: true,
@@ -29,25 +30,31 @@ export class AuthorsComponent implements OnInit {
     lastName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')])
   })
 
-  constructor(private authorService: AuthorService,private formBuilder: FormBuilder,) { }
-
-  ngOnInit():void {
-    this.authorService.getAllAuthors().subscribe(value => {
-        this.authors = <Author[]>value;
-        this.dataSource.data = this.authors as Author[];
-        this.dataSource.paginator = this.paginator;
-      });
+  constructor(
+    private authorService: AuthorService,
+    private formBuilder: FormBuilder,
+  ) {
   }
 
-  deactivateAuthor(id: number):void{
-    this.authorService.deactivateAuthor(id)
-      .subscribe(() =>{
-      this.ngOnInit();
+  ngOnInit(): void {
+    this.authorService.getAllAuthors().subscribe(value => {
+      this.authors = <Author[]>value;
+      this.dataSource.data = this.authors as Author[];
+      this.dataSource.paginator = this.paginator;
     });
   }
 
-  activateAuthor(id:number):void{
-    this.authorService.activateAuthor(id).subscribe(() =>{this.ngOnInit()});
+  deactivateAuthor(id: number): void {
+    this.authorService.deactivateAuthor(id)
+      .subscribe(() => {
+        this.ngOnInit();
+      });
+  }
+
+  activateAuthor(id: number): void {
+    this.authorService.activateAuthor(id).subscribe(() => {
+      this.ngOnInit()
+    });
   }
 
   onSubmit(): void {

@@ -67,6 +67,11 @@ mat-icon{
 }
 .grid-img img{
   border-radius: 4px;
+  object-fit:cover;
+  object-position: center;
+  width:220px;
+  height:130px;
+  border: solid 1px #CCC
 }
 
 .grid-desc{
@@ -152,7 +157,11 @@ mat-icon{
   overflow:hidden;
 }
 .row-img img{
-  border-radius: 4px;
+  object-fit:cover;
+  object-position: center;
+  width:300px;
+  height:200px;
+  border: solid 1px #CCC
 }
 
 .row-desc{
@@ -198,4 +207,8 @@ mat-icon{
 .row-add button{
   float: right;
   height:25px;
+}
+
+.shop-box mat-icon{
+  transform: scale(1);
 }

@@ -5,9 +5,9 @@ import {Order} from "../../../shared/models/Order";
 import {UserService} from "../../../shared/services/user.service";
 import {User} from "../../../shared/models/User";
 import {OrderStatus} from "../../../shared/models/OrderStatus";
-import {Address} from "../../../shared/models/Address";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {Address} from "../../../shared/models/Address";
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +16,6 @@ import {Router} from "@angular/router";
 })
 export class CartComponent implements OnInit {
   orderLines: any;
-  userId: number = 1;
   user: User;
 
   constructor(
@@ -24,36 +23,42 @@ export class CartComponent implements OnInit {
     private userService: UserService,
     private _snackBar: MatSnackBar,
     private router: Router,
-    ) {}
+  ) {
+  }
 
   ngOnInit(): void {
-    this.userService.getUserById(this.userId).subscribe(user => this.user = user as User)
-    this.orderService.getUserActiveAllOrderLines(this.userId).subscribe(lines => {
-      this.orderLines = lines as OrderLine[];
-    })
-  }
-
-  deleteLine(id:Number) {
-    this.orderService.deleteOrderLine(id).subscribe(() => this.ngOnInit())
-  }
-
-  confirmOrder(){
-    let defaultAddress: Address ={
-      active: false,
-      city: "",
-      country: "",
-      defaultAddress: false,
-      id: 0,
-      street: "",
-      zipCode: ""
-    };
-
-    for(let address of this.user.addresses){
-     if(address.defaultAddress){
-       defaultAddress = address;
-     }
+    if(sessionStorage.getItem('user') != null) {
+      this.user = JSON.parse(sessionStorage.getItem('user')!);
+      this.orderService.getUserActiveAllOrderLines(this.user.id).subscribe(lines => {
+        this.orderLines = lines as OrderLine[];
+      });
+    }else if(sessionStorage.getItem('tempCart') != null){
+      this.orderLines = JSON.parse(sessionStorage.getItem('tempCart')!) as OrderLine[];
     }
-    for(let line of this.orderLines){
+  }
+
+  deleteLine(id: Number) {
+    if(sessionStorage.getItem('user') != null) {
+      this.orderService.deleteOrderLine(id).subscribe(() => this.ngOnInit());
+    }else{
+      let orderLines = JSON.parse(sessionStorage.getItem('tempCart')!) as OrderLine[];
+      orderLines = orderLines.filter( line => line.id !== id);
+      sessionStorage.setItem('tempCart', JSON.stringify(orderLines));
+      this.ngOnInit();
+    }
+  }
+
+  updateOrderInfo(){
+    sessionStorage.setItem('tempCart', JSON.stringify(this.orderLines));
+  }
+
+  confirmOrder() {
+    // TODO Check product stock if there is enough products, if not show snackbar with message
+    // TODO On adding to cart, check if product all ready in cart and update value based on that
+
+    let defaultAddress = JSON.parse(sessionStorage.getItem('defaultAddress')!) as Address;
+
+    for (let line of this.orderLines) {
       line.active = false;
     }
 
@@ -61,7 +66,7 @@ export class CartComponent implements OnInit {
       OrderStatus.PENDING, true, this.orderLines, this.user);
     this.orderService.createOrder(order).subscribe(() => {
       this.openSnackBar("Order status PENDING, until payment is completed", "Done")
-      this.router.navigate(['orders']).then(r => console.log('Redirected => '+r));
+      this.router.navigate(['orders']).then(r => console.log('Redirected => ' + r));
     })
   }
 

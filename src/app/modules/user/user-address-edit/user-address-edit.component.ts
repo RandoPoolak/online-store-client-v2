@@ -4,6 +4,8 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AddressService} from "../../../shared/services/address.service";
 import {UserService} from "../../../shared/services/user.service";
+import {User} from "../../../shared/models/User";
+import {UtilService} from "../../../shared/services/util.service";
 
 @Component({
   selector: 'app-user-address-edit',
@@ -11,7 +13,7 @@ import {UserService} from "../../../shared/services/user.service";
   styleUrls: ['./user-address-edit.component.css']
 })
 export class UserAddressEditComponent implements OnInit {
-
+  user: User;
   address: Address = {
     id: 0,
     country: "",
@@ -23,7 +25,6 @@ export class UserAddressEditComponent implements OnInit {
   }
 
   requestAddressId: number = 0;
-  requestUserId: number = 0;
 
   addressEditForm = this.formBuilder.group({
       country: new FormControl("", Validators.required),
@@ -38,15 +39,26 @@ export class UserAddressEditComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private addressService: AddressService,
     private userService: UserService,
-    private router: Router
-  ) { }
-
-  ngOnInit(): void {
+    private router: Router,
+    private util: UtilService
+  ) {
     this.activeRoute.params.subscribe(params => {
       this.requestAddressId = +params["addressId"];
-      this.requestUserId = +params["userId"];
-      this.requestAddress(this.requestAddressId);
     })
+
+    if(sessionStorage.getItem('user') != null){
+      this.user = JSON.parse(sessionStorage.getItem('user')!);
+    }else{
+      this.router.navigate(["/shop"]).then();
+    }
+
+    if(!this.util.userHasAddress(this.user, this.requestAddressId)){
+      this.router.navigate(["/shop"]).then();
+    }
+  }
+
+  ngOnInit(): void {
+    this.requestAddress(this.requestAddressId);
   }
 
   requestAddress(id: number) {
@@ -72,7 +84,11 @@ export class UserAddressEditComponent implements OnInit {
     updatedAddress.active = this.address.active;
 
     this.addressService.updateAddress(updatedAddress).subscribe(()=>{
-      this.router.navigate(['/user-settings/' + this.requestUserId + '/2']).then(r => console.log("Redirected ->"+r))
+      let index = this.user.addresses.findIndex(address => address.id == this.address.id);
+      this.user.addresses[index] = updatedAddress;
+      this.util.updateUserSessionInfo(this.user);
+
+      this.router.navigate(['/user-settings/1']).then(r => console.log("Redirected ->"+r))
     });
   }
 

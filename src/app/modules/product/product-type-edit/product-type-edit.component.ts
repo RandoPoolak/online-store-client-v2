@@ -23,6 +23,9 @@ export class ProductTypeEditComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     ) {
+    if(JSON.parse(sessionStorage.getItem('userRole')!) != "ADMIN"){
+      this.router.navigate(['/not-allowed']).then();
+    }
   }
 
   ngOnInit(): void {

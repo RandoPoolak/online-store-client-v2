@@ -64,7 +64,7 @@
             <input #amount [value]="amount" type="number">
           </div>
           <div class="grid-add">
-            <button mat-button color="primary" (click)="addToCart(product, amount.value)">Add to cart</button>
+            <button mat-button color="primary" (click)="addToCart(product, amount.value)"><mat-icon>add_shopping_cart</mat-icon></button>
           </div>
         </div>
       </div>
@@ -83,7 +83,7 @@
             </div>
             <div class="row-desc">{{product.description}}</div>
             <div class="row-add">
-              <button mat-button color="primary" (click)="addToCart(product, amount.value )">Add to cart</button>
+              <button mat-button color="primary" (click)="addToCart(product, amount.value )"><mat-icon>add_shopping_cart</mat-icon></button>
             </div>
             <div class="row-amount">
               <span>

@@ -4,7 +4,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {Address} from "../../../shared/models/Address";
 import {AddressService} from "../../../shared/services/address.service";
 import {UserService} from "../../../shared/services/user.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../../shared/models/User";
 
 @Component({
@@ -30,7 +30,11 @@ export class AdminAddressesComponent implements OnInit {
     private addressService: AddressService,
     private userService: UserService,
     private activeRoute: ActivatedRoute,
+    private router: Router,
   ) {
+    if(JSON.parse(sessionStorage.getItem('userRole')!) != "ADMIN"){
+      this.router.navigate(['/not-allowed']).then();
+    }
   }
 
   ngOnInit(): void {

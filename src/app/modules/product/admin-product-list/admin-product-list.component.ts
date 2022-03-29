@@ -19,7 +19,8 @@ export class AdminProductListComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private _snackBar: MatSnackBar,
-  ) { }
+  ) {
+  }
 
 
   ngOnInit(): void {

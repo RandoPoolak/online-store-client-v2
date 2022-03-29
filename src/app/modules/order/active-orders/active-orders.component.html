@@ -20,9 +20,13 @@
       <td mat-cell *matCellDef="let order">
         <div class="dropdown">
           <span><mat-icon>assignment_returned</mat-icon></span>
-          <div class="dropdown-content">
+          <div class="dropdown-content" style="overflow: visible">
             <div *ngFor="let orderLine of order.orderLines">
-              {{orderLine.product.description}} - {{orderLine.quantity}}pc for {{orderLine.quantity * orderLine.product.price}}€
+              <a class="tooltip" routerLink="/product/{{orderLine.product.id}}" routerLinkActive="active">
+                {{orderLine.product.description}}
+                <div class="tooltipBox"><img src="{{orderLine.product.thumbnailUrl}}" alt="Product image"></div>
+              </a>
+              - {{orderLine.quantity}}pc for {{orderLine.quantity * orderLine.product.price}}€
               <hr>
             </div>
           </div>

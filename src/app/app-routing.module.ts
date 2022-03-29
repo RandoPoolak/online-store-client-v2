@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {UserEditComponent} from "./modules/user/user-edit/user-edit.component";
+// import {UserEditComponent} from "./modules/user/user-edit/user-edit.component";
 import {AuthorEditComponent} from "./modules/author/author-edit/author-edit.component";
 import {ShopViewComponent} from "./modules/shop-view/shop-view.component";
 import {ProductEditComponent} from "./modules/product/product-edit/product-edit.component";
@@ -18,11 +18,14 @@ import {AdminUserEditComponent} from "./modules/admin/admin-user-edit/admin-user
 import {CartComponent} from "./modules/order/cart/cart.component";
 import {OrdersComponent} from "./modules/order/orders/orders.component";
 import {ProductViewComponent} from "./modules/product/product-view/product-view.component";
+import {LoginComponent} from "./modules/login-register/login/login.component";
+import {RegisterComponent} from "./modules/login-register/register/register.component";
+import {NotAllowedComponent} from "./modules/bad-requests/not-allowed/not-allowed.component";
+
 
 
 
 const routes: Routes = [
-  {path: 'user-edit/:id', component: UserEditComponent},
   {path: 'admin-user-edit/:id', component: AdminUserEditComponent},
   {path: 'author-edit/:id', component: AuthorEditComponent},
   {path: 'shop', component: ShopViewComponent},
@@ -31,15 +34,18 @@ const routes: Routes = [
   {path: 'product-type/new-sub/:id', component: ProductTypeNewSubComponent},
   {path: 'category/edit/:id', component: CategoryEditComponent},
   {path: 'category/new-sub/:id', component: CategoryNewSubComponent},
-  {path: 'user-address-edit/:addressId/:userId', component: UserAddressEditComponent},
+  {path: 'user-address-edit/:addressId', component: UserAddressEditComponent},
   {path: 'admin-address-edit/:addressId/:userId', component: AdminAddressEditComponent},
   {path: 'admin-addresses/:id', component: AdminAddressesComponent},
   {path: 'user-addresses/:id', component: UserAddressesComponent},
   {path: 'admin/:tabIndex', component: AdminComponent},
-  {path: 'user-settings/:userId/:tabIndex', component: UserSettingsComponent},
+  {path: 'user-settings/:tabIndex', component: UserSettingsComponent},
   {path: 'cart', component:CartComponent},
   {path: 'orders', component:OrdersComponent},
-  {path: 'product/:productId', component:ProductViewComponent}
+  {path: 'product/:productId', component:ProductViewComponent},
+  {path: 'login', component:LoginComponent},
+  {path: 'register', component:RegisterComponent},
+  {path: 'not-allowed', component:NotAllowedComponent},
 ];
 
 @NgModule({

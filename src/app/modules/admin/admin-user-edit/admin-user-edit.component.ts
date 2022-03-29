@@ -53,8 +53,10 @@ export class AdminUserEditComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private userService: UserService,
     private router: Router
-
   ) {
+    if(JSON.parse(sessionStorage.getItem('userRole')!) != "ADMIN"){
+      this.router.navigate(['/not-allowed']).then();
+    }
     this.enumRoles = Object.keys(this.roles);
     this.enumContactMethods = Object.keys(this.contactMethods);
   }

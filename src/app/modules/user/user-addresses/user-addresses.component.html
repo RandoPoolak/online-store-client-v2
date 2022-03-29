@@ -46,6 +46,8 @@
 <!--  <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>-->
 <!--  <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>-->
 <!--</table>-->
+<!--<mat-paginator #paginator [pageSizeOptions]="pageSizes"-->
+<!--               showFirstLastButtons></mat-paginator>-->
 <!--</div>-->
 
 
@@ -79,7 +81,7 @@
           </ng-template>
         </span>
 
-        <span routerLink="/user-address-edit/{{address.id}}/{{requestId}}" routerLinkActive="active">
+        <span routerLink="/user-address-edit/{{address.id}}" routerLinkActive="active">
           <button mat-button color="primary">
             <mat-icon>edit</mat-icon>
           </button>
@@ -124,7 +126,5 @@
   </form>
 </div>
 
-<mat-paginator #paginator [pageSizeOptions]="pageSizes"
-               showFirstLastButtons></mat-paginator>
 
 
