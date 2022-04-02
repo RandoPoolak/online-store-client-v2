@@ -1,38 +1,40 @@
-<form [formGroup]="userEditForm" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="standard">
-    <mat-label>Email:</mat-label>
-    <input matInput formControlName="email">
-  </mat-form-field>
+<div class="container">
+  <form [formGroup]="userEditForm" (ngSubmit)="onSubmit()" style="width: 100%">
+    <mat-form-field appearance="standard" style="width: 45%; padding-right: 5%">
+      <mat-label>Email:</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
 
-  <mat-form-field appearance="standard">
-    <mat-label>Name:</mat-label>
-    <input matInput formControlName="userName">
-  </mat-form-field>
+    <mat-form-field appearance="standard" style="width: 45%; padding-right: 5%">
+      <mat-label>Name:</mat-label>
+      <input matInput formControlName="userName">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="standard" style="width: 85%">
+      <mat-label>Logo url:</mat-label>
+      <input matInput formControlName="logoUrl">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="standard" style="width: 45%; padding-right: 5%">
+      <mat-label>Role:</mat-label>
+      <mat-select formControlName="role">
+        <mat-option>Contact method</mat-option>
+        <mat-option *ngFor="let role of enumRoles" [value]="role">
+          {{role}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="standard">
-    <mat-label>Logo url:</mat-label>
-    <input matInput formControlName="logoUrl">
-  </mat-form-field>
-
-  <mat-form-field appearance="standard">
-    <mat-label>Role:</mat-label>
-    <mat-select formControlName="role">
-      <mat-option>Contact method</mat-option>
-      <mat-option *ngFor="let role of enumRoles" [value]="role">
-        {{role}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field appearance="standard">
-    <mat-label>Contact method:</mat-label>
-    <mat-select formControlName="contactMethod">
-      <mat-option>Contact method</mat-option>
-      <mat-option *ngFor="let contactMethod of enumContactMethods" [value]="contactMethod">
-        {{contactMethod}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <button type="submit" [disabled]="!userEditForm.valid" mat-button color="primary">Submit</button>
-</form>
+    <mat-form-field appearance="standard" style="width: 45%; padding-right: 5%">
+      <mat-label>Contact method:</mat-label>
+      <mat-select formControlName="contactMethod">
+        <mat-option>Contact method</mat-option>
+        <mat-option *ngFor="let contactMethod of enumContactMethods" [value]="contactMethod">
+          {{contactMethod}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <button type="submit" [disabled]="!userEditForm.valid" mat-button color="primary">Submit</button>
+  </form>
+</div>
