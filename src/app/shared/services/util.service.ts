@@ -7,6 +7,7 @@ import {OrderService} from "./order.service";
 import {ContactMethod} from "../models/ContactMethod";
 import {Role} from "../models/Role";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AppComponent} from "../../app.component";
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,8 @@ export class UtilService {
 
   constructor(
     private orderService: OrderService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private app: AppComponent
   ) {
   }
 
@@ -68,7 +70,7 @@ export class UtilService {
 
   addToCart(product: Product, value: string) {
     if (sessionStorage.getItem('user') != null) {
-      this.addOrderLineToDb(product, value)
+      this.addOrderLineToDb(product, value);
     } else {
       this.tempOrder(product, value);
     }
@@ -76,22 +78,36 @@ export class UtilService {
 
   private addOrderLineToDb(product: Product, value: string) {
     let user: User = JSON.parse(sessionStorage.getItem('user')!);
-    let newOrderLine = new OrderLine(0, product, Number(value), true, user)
-    this.orderService.createOrderLine(newOrderLine).subscribe(() => {
-        let message = "Product added to cart"
-        this.openSnackBar(message, "Done", 5000)
+    let orderLines: OrderLine[] = [];
+    this.orderService.getUserActiveAllOrderLines(user.id).subscribe(response => {
+      orderLines = response as OrderLine[];
+      let contains = this.cartContainsProduct(orderLines, product, value);
+      if (!contains) {
+        let newOrderLine = new OrderLine(0, product, Number(value), true, user)
+        this.orderService.createOrderLine(newOrderLine).subscribe(() => {
+            let message = "Product added to cart"
+            this.openSnackBar(message, "Done", 5000)
+            this.app.updateValuesFromStorage();
+          }
+        )
       }
-    )
+
+    });
+
   }
 
   private tempOrder(product: Product, value: string) {
     if (sessionStorage.getItem('tempCart') != null) {
       let orderLines: OrderLine[];
       orderLines = JSON.parse(sessionStorage.getItem('tempCart')!);
-      orderLines.push(new OrderLine(orderLines.length + 1, product, Number(value), true, this.tempUser));
-      sessionStorage.setItem('tempCart', JSON.stringify(orderLines));
-      let message = "Product added to cart"
-      this.openSnackBar(message, "Done", 5000)
+      let contains = this.cartContainsProduct(orderLines, product, value);
+      if (!contains) {
+        orderLines.push(new OrderLine(orderLines.length + 1, product, Number(value), true, this.tempUser));
+        sessionStorage.setItem('tempCart', JSON.stringify(orderLines));
+        let message = "Product added to cart"
+        this.openSnackBar(message, "Done", 5000)
+      }
+
     } else {
       let orderLines: OrderLine[] = [];
       orderLines.push(new OrderLine(1, product, Number(value), true, this.tempUser));
@@ -99,6 +115,26 @@ export class UtilService {
       let message = "Product added to cart"
       this.openSnackBar(message, "Done", 5000)
     }
+  }
+
+  private cartContainsProduct(orderLines: OrderLine[], product: Product, value: string) {
+    let contains = false;
+    let message = "Product all ready in cart. Updated value"
+    orderLines.forEach((line) => {
+      if (line.product.id == product.id) {
+        line.quantity = line.quantity.valueOf() + Number(value)
+        contains = true;
+        if (sessionStorage.getItem('user') != null) {
+          this.orderService.updateOrderLine(line).subscribe(() => {
+            this.openSnackBar(message, "Done", 5000)
+          });
+        } else if (sessionStorage.getItem('tempCart') != null) {
+          sessionStorage.setItem('tempCart', JSON.stringify(orderLines));
+          this.openSnackBar(message, "Done", 5000)
+        }
+      }
+    });
+    return contains;
   }
 
   openSnackBar(message: string, action: string, durationMS: number) {

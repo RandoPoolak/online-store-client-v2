@@ -1,16 +1,18 @@
 .img-box img{
-  max-height: 120px;
-}
-
-.img-box .img-div{
-  margin:0 auto;
-  height: 100px;
-  width: 170px;
-  overflow: hidden;
+  border-radius: 4px;
+  object-fit:cover;
+  object-position: center;
+  width:220px;
+  height:130px;
+  border: solid 1px #CCC
 }
 
 .img-box{
-  padding:5px;
+  padding-right:15px;
+  height:130px;
+  width: 220px;
+  margin:3px;
+  overflow:hidden;
 }
 
 td .num-field{

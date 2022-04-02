@@ -16,6 +16,10 @@ export class AuthorService {
     return this.httpClient.get(this.AUTHOR_BASE_URL);
   }
 
+  public getAllActiveAuthors() {
+    return this.httpClient.get(this.AUTHOR_BASE_URL+"/active");
+  }
+
   public deactivateAuthor(id: number): Observable<unknown> {
     return this.httpClient.get(this.AUTHOR_BASE_URL + "/delete/" + id)
   }

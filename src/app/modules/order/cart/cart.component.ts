@@ -8,6 +8,8 @@ import {OrderStatus} from "../../../shared/models/OrderStatus";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {Address} from "../../../shared/models/Address";
+import {ProductService} from "../../../shared/services/product.service";
+import {AppComponent} from "../../../app.component";
 
 @Component({
   selector: 'app-cart',
@@ -15,7 +17,7 @@ import {Address} from "../../../shared/models/Address";
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  orderLines: any;
+  orderLines: OrderLine[];
   user: User;
 
   constructor(
@@ -23,6 +25,8 @@ export class CartComponent implements OnInit {
     private userService: UserService,
     private _snackBar: MatSnackBar,
     private router: Router,
+    private productService: ProductService,
+    private app: AppComponent
   ) {
   }
 
@@ -44,35 +48,46 @@ export class CartComponent implements OnInit {
       let orderLines = JSON.parse(sessionStorage.getItem('tempCart')!) as OrderLine[];
       orderLines = orderLines.filter( line => line.id !== id);
       sessionStorage.setItem('tempCart', JSON.stringify(orderLines));
+      this.app.updateValuesFromStorage();
       this.ngOnInit();
     }
   }
 
   updateOrderInfo(){
     sessionStorage.setItem('tempCart', JSON.stringify(this.orderLines));
+    this.openSnackBar('Order items updated', "Done", 99999);
   }
 
   confirmOrder() {
-    // TODO Check product stock if there is enough products, if not show snackbar with message
-    // TODO On adding to cart, check if product all ready in cart and update value based on that
-
     let defaultAddress = JSON.parse(sessionStorage.getItem('defaultAddress')!) as Address;
-
-    for (let line of this.orderLines) {
-      line.active = false;
+    let enoughInStock = true;
+    let stockMessage = "";
+    for(let line of this.orderLines){
+      if(line.quantity > line.product.stock){
+        enoughInStock = false;
+        stockMessage += "Not enough "+line.product.description+"'s in stock. "
+      }
     }
-
-    let order = new Order(0, new Date(), defaultAddress,
-      OrderStatus.PENDING, true, this.orderLines, this.user);
-    this.orderService.createOrder(order).subscribe(() => {
-      this.openSnackBar("Order status PENDING, until payment is completed", "Done")
-      this.router.navigate(['orders']).then(r => console.log('Redirected => ' + r));
-    })
+    if(enoughInStock){
+      for (let line of this.orderLines) {
+        line.active = false;
+        line.product.stock = line.product.stock.valueOf() - line.quantity.valueOf();
+        this.productService.updateProduct(line.product).subscribe();
+      }
+      let order = new Order(0, new Date(), defaultAddress,
+        OrderStatus.PENDING, true, this.orderLines, this.user);
+      this.orderService.createOrder(order).subscribe(() => {
+        this.openSnackBar("Thank you for your order!", "Done", 5000)
+        this.router.navigate(['orders']).then(r => console.log('Redirected => ' + r));
+      })
+    }else{
+      this.openSnackBar(stockMessage, "Done", 99999)
+    }
   }
 
-  openSnackBar(message: string, action: string) {
+  openSnackBar(message: string, action: string, durationMS:number) {
     this._snackBar.open(message, action, {
-      duration: 5000
+      duration: durationMS
     });
   }
 }

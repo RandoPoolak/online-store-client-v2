@@ -58,7 +58,8 @@ export class UserAddressesComponent implements OnInit {
           address.active = false;
         }
       })
-      sessionStorage.setItem('user', JSON.stringify(this.user));
+      let sessionUser = this.user;
+      sessionStorage.setItem('user', JSON.stringify(sessionUser));
       this.ngOnInit();
     })
   }

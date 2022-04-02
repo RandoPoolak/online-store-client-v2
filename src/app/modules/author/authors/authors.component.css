@@ -1,0 +1,11 @@
+@media (min-width: 833px){
+  .form-box{
+    float: right;
+  }
+}
+@media (max-width: 832px) {
+  .form-box{
+    margin-top: 10px;
+    float: left;
+  }
+}

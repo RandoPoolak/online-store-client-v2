@@ -1,0 +1,26 @@
+.container {
+  width: 700px;
+  height: calc(100vh - 100px);
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
+.address-box{
+  padding: 10px;
+  width: 70%;
+  height: 110px;
+  border: 2px solid rgb(63, 84, 177);
+  background: rgb(222, 241, 255);
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.buttons div{
+  float:left;
+}
+.box-title-default{
+  font-weight: bold;
+}
+.new-address-box{
+  margin-top:40px;
+}

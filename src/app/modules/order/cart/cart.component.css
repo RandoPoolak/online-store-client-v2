@@ -1,7 +1,9 @@
 .cart-box {
-  height: calc(100vh - 64px);
-  margin-left: 20px;
-  margin-top: 84px;
+  width: 700px;
+  padding-top: 20px;
+  margin: 50px auto;
+  overflow-y: auto;
+  height: calc(100vh - 50px);
 }
 
 .cart-element {
@@ -9,15 +11,24 @@
   height: 112px;
   padding: 5px;
   margin-bottom: 15px;
+  background: rgb(222, 241, 255);
   border: 1px solid black;
   border-radius: 4px;
 }
 
 .cart-img {
   float: left;
+  padding-right: 15px;
   overflow: hidden;
   height: 100px;
   width: 150px;
+}
+.cart-img img{
+  border-radius: 4px;
+  object-fit:cover;
+  object-position: center;
+  width:220px;
+  height:130px;
 }
 
 .cart-desc {
@@ -47,3 +58,5 @@
   height: 25px;
   color: red;
 }
+
+

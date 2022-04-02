@@ -48,7 +48,8 @@ export class LoginComponent implements OnInit {
         this.util.linkTempCartToUser(user);
       }
 
-      this.router.navigate(['/shop']).then()
+      window.history.replaceState({},'',"/shop");
+      window.location.reload();
     })
   }
 

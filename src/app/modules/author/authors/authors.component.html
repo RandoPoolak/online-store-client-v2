@@ -53,15 +53,19 @@
                  showFirstLastButtons></mat-paginator>
 </div>
 
-<div style="float:right;">
+<div class="form-box">
   <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
-    <label for="first-name">First name: </label>
-    <input id="first-name" type="text" formControlName="firstName">
+    <mat-form-field appearance="standard">
+      <input matInput id="first-name" formControlName="firstName" placeholder="First name">
+    </mat-form-field>
     <br>
-    <label for="last-name">Last name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
+    <mat-form-field appearance="standard">
+      <input matInput id="last-name" formControlName="lastName" placeholder="Last name">
+    </mat-form-field>
     <br>
-    <button type="submit" [disabled]="!authorForm.valid" mat-button color="primary">Submit</button>
+    <button type="submit" style="float:right;" [disabled]="!authorForm.valid" mat-button color="primary">
+      Submit
+    </button>
   </form>
 
 </div>

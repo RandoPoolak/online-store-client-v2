@@ -57,7 +57,7 @@ export class CategoryNewSubComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.request_id = +params['id'];
-      this.authorService.getAllAuthors().subscribe(value => this.authors = <Author[]>value);
+      this.authorService.getAllActiveAuthors().subscribe(value => this.authors = <Author[]>value);
       this.requestCategory(this.request_id);
     })
   }

@@ -22,6 +22,8 @@ import {MatInputModule} from "@angular/material/input";
 import {OrderModule} from "./modules/order/order.module";
 import {LoginRegisterModule} from "./modules/login-register/login-register.module";
 import { NotAllowedComponent } from './modules/bad-requests/not-allowed/not-allowed.component';
+import { SearchFilterPipe } from './shared/pipes/search-filter.pipe';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -30,6 +32,7 @@ import { NotAllowedComponent } from './modules/bad-requests/not-allowed/not-allo
     ShopViewComponent,
     WeatherWidgetComponent,
     NotAllowedComponent,
+    SearchFilterPipe,
   ],
     imports: [
         BrowserModule,
@@ -49,7 +52,8 @@ import { NotAllowedComponent } from './modules/bad-requests/not-allowed/not-allo
         MatButtonToggleModule,
         MatInputModule,
         OrderModule,
-        LoginRegisterModule
+        LoginRegisterModule,
+        FormsModule
     ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

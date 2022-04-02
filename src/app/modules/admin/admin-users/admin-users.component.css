@@ -1,0 +1,47 @@
+.mat-table{
+  width: 100%;
+}
+
+.mat-column-id{
+  width: 5%;
+  padding: 0 5px;
+}
+
+.mat-column-email{
+  width: 20%;
+  overflow-x: auto;
+}
+
+.mat-column-userName{
+  width: 17%;
+}
+
+.mat-column-role{
+  width: 8%;
+  text-align: center;
+}
+
+.mat-column-contactMethod{
+  width: 12%;
+  text-align: center;
+}
+
+.mat-column-isActive{
+  width: 8%;
+  text-align: center;
+}
+
+.mat-column-edit{
+  width: 10%;
+  text-align: center;
+}
+
+.mat-column-addresses{
+  width: 8%;
+  text-align: center;
+}
+
+.mat-column-deactivate{
+  width: 12%;
+  text-align: center;
+}

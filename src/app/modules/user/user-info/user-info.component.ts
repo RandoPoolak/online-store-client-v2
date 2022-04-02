@@ -55,9 +55,9 @@ export class UserInfoComponent implements OnInit {
     this.userEditForm = this.formBuilder.group({
         email: [this.user.email, Validators.required],
         userName: [this.user.userName, Validators.required],
-        password: [this.user.password, Validators.required],
+        password: [this.user.password],
         logoUrl: [this.user.logoUrl, Validators.required],
-        role: [this.user.role, Validators.required],
+        role: [this.user.role],
         contactMethod: [this.user.contactMethod, Validators.required]
       }
     )

@@ -45,4 +45,9 @@ export class OrderService {
     let newOrder = JSON.stringify(order);
     return this.httpClient.post(this.ORDER_BASE_URL+"/update", newOrder);
   }
+
+  public updateOrderLine(orderLine: OrderLine){
+    let newOrderLine = JSON.stringify(orderLine);
+    return this.httpClient.post(this.ORDER_LINE_BASE_URL+"/update", newOrderLine);
+  }
 }

@@ -1,20 +1,20 @@
 <form [formGroup]="userEditForm" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="standard">
     <mat-label>Email:</mat-label>
     <input matInput formControlName="email">
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="standard">
     <mat-label>Name:</mat-label>
     <input matInput formControlName="userName">
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="standard">
     <mat-label>Logo url:</mat-label>
     <input matInput formControlName="logoUrl">
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="standard">
     <mat-label>Role:</mat-label>
     <mat-select formControlName="role">
       <mat-option>Contact method</mat-option>
@@ -24,7 +24,7 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="standard">
     <mat-label>Contact method:</mat-label>
     <mat-select formControlName="contactMethod">
       <mat-option>Contact method</mat-option>

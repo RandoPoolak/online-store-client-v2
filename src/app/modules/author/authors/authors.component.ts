@@ -60,6 +60,7 @@ export class AuthorsComponent implements OnInit {
   onSubmit(): void {
     this.author.firstName = this.authorForm.value.firstName;
     this.author.lastName = this.authorForm.value.lastName;
+    this.authorForm.reset();
     this.authorService.createAuthor(this.author).subscribe(() => {
       this.ngOnInit()
     });

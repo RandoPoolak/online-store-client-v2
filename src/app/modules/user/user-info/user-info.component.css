@@ -1,0 +1,16 @@
+.container {
+  width: 700px;
+  margin: 0 auto;
+}
+
+form img {
+  float: right;
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 50%;
+  border: 2px solid rgb(63, 84, 177);
+}
+.container form{
+  padding: 10px
+}
+

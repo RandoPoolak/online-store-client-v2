@@ -14,8 +14,8 @@ export class AdminUsersComponent implements OnInit {
   users: User[] = [];
   dataSource = new MatTableDataSource<User>([]);
   pageSizes = [10,25,50];
-  displayColumns: string[] = ['id','email','userName','password',
-    'logoUrl','role','contactMethod','isActive',
+  displayColumns: string[] = ['id','email','userName',
+    'role','contactMethod','isActive',
     'address','edit','deactivate'];
 
   constructor(private userService: UserService) { }

@@ -1,11 +1,11 @@
 <div class="container">
   <form [formGroup]="loginForm" (ngSubmit)="requestLogin()">
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="standard">
       <mat-label>Enter your email:</mat-label>
       <input matInput placeholder="pat@example.com" formControlName="email" required>
     </mat-form-field>
     <br>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="standard">
       <mat-label>Enter your password:</mat-label>
       <input matInput formControlName="pass" [type]="hide ? 'password' : 'text'">
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"

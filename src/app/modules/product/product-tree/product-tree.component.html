@@ -1,4 +1,4 @@
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree" style="float:left;">
+<mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree" style="float:left;">
   <!-- Tree element with no child branches -->
   <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
     <button mat-icon-button matTreeNodeToggle style="color: transparent; pointer-events: none">
@@ -24,7 +24,12 @@
     </div>
     <ng-template #nextBlock class="button-div">
       <a routerLink="/{{node.controllerUrl}}/new-sub/{{node.id}}" routerLinkActive="active">
-        <button mat-button color="primary">Add sub</button>
+        <div *ngIf="node.controllerUrl == 'product-type'; else categoryButton">
+          <button mat-button color="primary">Add category</button>
+        </div>
+        <ng-template #categoryButton>
+          <button mat-button color="primary">Add product</button>
+        </ng-template>
       </a>
       <span *ngIf="node.active; else elseBlock">
         <button mat-button color="primary" (click)="deactivateNode(node.controllerUrl, node.id)">Disable</button>
@@ -65,7 +70,12 @@
       </div>
       <ng-template #nextBlock class="button-div">
         <a routerLink="/{{node.controllerUrl}}/new-sub/{{node.id}}" routerLinkActive="active">
-          <button mat-button color="primary">Add sub</button>
+          <div *ngIf="node.controllerUrl == 'product-type'; else categoryButton">
+            <button mat-button color="primary">Add category</button>
+          </div>
+          <ng-template #categoryButton>
+            <button mat-button color="primary">Add product</button>
+          </ng-template>
         </a>
         <span *ngIf="node.active; else elseBlock">
           <button mat-button color="primary" (click)="deactivateNode(node.controllerUrl, node.id)">Disable</button>
@@ -89,7 +99,7 @@
 <div style="float:right">
   <h3>Add new product type</h3>
   <form [formGroup]="productTypeForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="standard">
       <mat-label>Product type name:</mat-label>
       <input matInput formControlName="name">
     </mat-form-field>

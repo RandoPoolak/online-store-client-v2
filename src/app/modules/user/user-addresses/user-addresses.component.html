@@ -1,130 +1,69 @@
-<!--<div style="width: 100%">-->
-<!--<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">-->
-<!--  <ng-container matColumnDef="address">-->
-<!--    <th mat-header-cell *matHeaderCellDef style="width: 250px"> Address</th>-->
-<!--    <td mat-cell *matCellDef="let address"> {{address.street}}, {{address.city}}, {{address.country}}, {{address.zipCode}} </td>-->
-<!--  </ng-container>-->
-
-<!--  <ng-container matColumnDef="edit">-->
-<!--    <th mat-header-cell *matHeaderCellDef style="width: 100px"> Edit</th>-->
-<!--    <td mat-cell *matCellDef="let address">-->
-<!--      <a routerLink="/user-address-edit/{{address.id}}/{{requestId}}" routerLinkActive="active">-->
-<!--        <button mat-button color="primary"><mat-icon>edit</mat-icon></button>-->
-<!--      </a>-->
-<!--    </td>-->
-<!--  </ng-container>-->
-
-<!--  <ng-container matColumnDef="deactivate">-->
-<!--    <th mat-header-cell *matHeaderCellDef style="width: 100px;"> Delete</th>-->
-<!--    <td mat-cell *matCellDef="let address">-->
-<!--      <div *ngIf="!address.defaultAddress">-->
-<!--        <button *ngIf="address.active; else elseButton" (click)="deactivateAddress(address.id)" mat-button color="primary">-->
-<!--          <mat-icon>delete_forever</mat-icon>-->
-<!--        </button>-->
-<!--        <ng-template #elseButton>-->
-<!--        </ng-template>-->
-<!--      </div>-->
-<!--    </td>-->
-
-<!--    <ng-container matColumnDef="makeDefault">-->
-<!--      <th mat-header-cell *matHeaderCellDef style="width: 150px"> Default</th>-->
-<!--      <td mat-cell *matCellDef="let address">-->
-<!--        <div *ngIf="address.defaultAddress || !address.active; else elseButton">-->
-<!--          <div *ngIf="address.defaultAddress"> Default address-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <ng-template #elseButton>-->
-<!--          <button (click)="setDefault(address.id)" mat-button color="primary">-->
-<!--            <mat-icon>check_circle_outline</mat-icon>-->
-<!--          </button>-->
-<!--        </ng-template>-->
-<!--      </td>-->
-<!--    </ng-container>-->
-
-<!--  </ng-container>-->
-
-<!--  <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>-->
-<!--  <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>-->
-<!--</table>-->
-<!--<mat-paginator #paginator [pageSizeOptions]="pageSizes"-->
-<!--               showFirstLastButtons></mat-paginator>-->
-<!--</div>-->
-
-
-<div *ngFor="let address of user.addresses" style="margin-bottom: 70px">
+<div class="container">
   <div>
-    <div *ngIf="address.defaultAddress"> Your current default address:
-      <span style="font-weight: 700">{{address.street}}, {{address.city}}, {{address.country}}, {{address.zipCode}} </span>
-    </div>
-  </div>
-</div>
-<mat-divider inset></mat-divider>
-
-<div>
-  <div *ngFor="let address of user.addresses">
-
-    <div *ngIf="address.active" >
-
-      <div style="float: left">
-        <div>Address: <span>{{address.street}}, {{address.city}}, {{address.country}}, {{address.zipCode}} </span>
+    <div *ngFor="let address of user.addresses; let i = index">
+      <div *ngIf="address.active">
+        <div class="address-box">
+          <span *ngIf="address.defaultAddress; else notDefault" class="box-title-default">
+            Delivery address #{{i + 1}} <----- Default delivery address
+          </span>
+          <ng-template #notDefault>
+            <span class="box-title">Delivery address #{{i + 1}}</span>
+          </ng-template>
+          <div class="address-text">{{address.country}}, {{address.city}}, {{address.street}}, {{address.zipCode}}</div>
+          <div class="buttons">
+            <div *ngIf="!address.defaultAddress">
+              <button *ngIf="address.active; else elseButton" (click)="deactivateAddress(address.id)" mat-button
+                      color="primary">
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+            </div>
+            <ng-template #elseButton>
+            </ng-template>
+            <div>
+              <a routerLink="/user-address-edit/{{address.id}}" routerLinkActive="active">
+                <button mat-button color="primary">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </a>
+            </div>
+            <div *ngIf="!address.defaultAddress || address.active">
+              <button (click)="setDefault(address.id)" mat-button color="primary">
+                <mat-icon>check_circle_outline</mat-icon>
+                Set Default
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div style="text-align: right">
-
-        <span *ngIf="!address.defaultAddress">
-          <button *ngIf="address.active; else elseButton" (click)="deactivateAddress(address.id)" mat-button
-                  color="primary">
-            <mat-icon>delete_forever</mat-icon>
-          </button>
-          <ng-template #elseButton>
-          </ng-template>
-        </span>
-
-        <span routerLink="/user-address-edit/{{address.id}}" routerLinkActive="active">
-          <button mat-button color="primary">
-            <mat-icon>edit</mat-icon>
-          </button>
-        </span>
-
-        <span *ngIf="!address.defaultAddress || address.active">
-          <button (click)="setDefault(address.id)" mat-button color="primary">
-            <mat-icon>check_circle_outline</mat-icon> Set Default
-          </button>
-        </span>
-
-        <mat-divider inset></mat-divider>
-      </div>
     </div>
   </div>
+
+  <div class="new-address-box">
+    <h3>Add new address</h3>
+    <form [formGroup]="newAddressForm" (ngSubmit)="onAddressSubmit()">
+      <mat-form-field appearance="standard">
+        <mat-label>Country:</mat-label>
+        <input matInput formControlName="country">
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>City:</mat-label>
+        <input matInput formControlName="city">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="standard">
+        <mat-label>Street:</mat-label>
+        <input matInput formControlName="street">
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Zip code:</mat-label>
+        <input matInput formControlName="zipCode">
+      </mat-form-field>
+      <br>
+      <button type="submit" [disabled]="!newAddressForm.valid" mat-button color="primary">Submit</button>
+    </form>
+  </div>
 </div>
-
-<div>
-  <h3>Add new address</h3>
-  <form [formGroup]="newAddressForm" (ngSubmit)="onAddressSubmit()">
-    <mat-form-field appearance="fill">
-      <mat-label>Country:</mat-label>
-      <input matInput formControlName="country">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>City:</mat-label>
-      <input matInput formControlName="city">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Street:</mat-label>
-      <input matInput formControlName="street">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Zip code:</mat-label>
-      <input matInput formControlName="zipCode">
-    </mat-form-field>
-
-    <button type="submit" [disabled]="!newAddressForm.valid" mat-button color="primary">Submit</button>
-  </form>
-</div>
-
 
 

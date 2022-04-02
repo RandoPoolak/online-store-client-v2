@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {MatTreeNestedDataSource} from "@angular/material/tree";
+import { Component, OnInit} from '@angular/core';
+import { MatTreeNestedDataSource} from "@angular/material/tree";
 import {NestedTreeControl} from "@angular/cdk/tree";
 import {TreeNode} from "../../../shared/models/TreeNode";
 import {TreeNodeService} from "../../../shared/services/tree-node.service";
@@ -53,13 +53,42 @@ export class ProductTreeComponent implements OnInit {
   }
 
   deactivateNode(controller: String, id: number) {
-    this.treeNodeService.disableTreeElement(controller, id).subscribe(() => {
-      this.updateInfo()
-    });
+    this.treeNodeService.disableTreeElement(controller, id).subscribe();
+    this.changeNodeStatus(id, false);
   }
 
   activateNode(controller: String, id: number) {
-    this.treeNodeService.enableTreeElement(controller, id).subscribe(()=>this.updateInfo());
+    this.treeNodeService.enableTreeElement(controller, id).subscribe();
+    this.changeNodeStatus(id, true);
   }
 
+  private changeNodeStatus(id:number, boolean: boolean){
+    let found = false;
+    for(let type of this.dataSource.data){
+      if(found){break;}
+      if(type.id == id){
+        type.active = boolean;
+        found = true;
+        break;
+      }else{
+        for(let category of type.children){
+          if(found){break;}
+          if(category.id == id){
+            category.active = boolean;
+            found = true;
+            break;
+          }else{
+            for(let product of category.children){
+              if(found){break;}
+              if(product.id == id){
+                product.active = boolean;
+                found = true;
+                break;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

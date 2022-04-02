@@ -1,25 +1,26 @@
-<mat-toolbar color="accent">
-  <div style="width: 100%">
+<mat-toolbar color="primary">
+  <div class="row-content" style="width: 100%">
       <span>
-        <a routerLink="/shop" routerLinkActive="active"><mat-icon>home</mat-icon></a>
+        <a><button (click)="loadShop()"><mat-icon>store</mat-icon></button></a>
       </span>
   </div>
 
-  <div *ngIf="user == null">
-    <button>
-      <a routerLink="/register" routerLinkActive="active">Register</a>
-    </button>
-    <button>
-      <a routerLink="/login" routerLinkActive="active">Login</a>
-    </button>
+  <div *ngIf="user == null" class="row-content-reg-log">
+    <a routerLink="/login" routerLinkActive="active"><button>Login</button></a>
+    <a routerLink="/register" routerLinkActive="active"><button>Register</button></a>
   </div>
-  <a routerLink="/cart" routerLinkActive="active">
+  <a routerLink="/cart" routerLinkActive="active" class="row-content">
     <mat-icon>shopping_cart</mat-icon>
+    <div *ngIf="productCountInCart > 0">
+    <div class="prod-count">
+      <div class="prod-count-text">{{productCountInCart}}</div>
+    </div>
+    </div>
   </a>
-  <div *ngIf="user != null">
+  <div *ngIf="user != null" class="row-content">
     <ul>
       <li class="dropdown">
-        <a class="dropbtn"><mat-icon>account_circle</mat-icon></a>
+        <a class="dropBtn"><mat-icon>account_circle</mat-icon></a>
         <div class="dropdown-content">
           <button style="width: 100%">
             <a routerLink="/user-settings/0" routerLinkActive="active">User settings</a>
